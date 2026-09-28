@@ -1,0 +1,4 @@
+# The site is plain HTML/CSS/JS inside this folder; there is no build step.
+[build]
+  publish = "SINVESTA MODERN FINAL WEB"
+  command = ""
