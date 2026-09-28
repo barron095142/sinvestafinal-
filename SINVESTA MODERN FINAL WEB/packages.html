@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Solar Packages — 6.6kW to 50kW | Sinvesta Group Sydney</title>
-<meta name="description" content="Residential solar from 6.6kW, 10.45kW and 13.28kW, plus 20kW, 30kW and 50kW commercial systems. 475W Jinko Tiger NEO panels, Fronius, Sungrow and Solis inverters, installed across Sydney by CEC-accredited electricians.">
+<title>Solar Packages — 6.6kW to 100kW | Sinvesta Group Sydney</title>
+<meta name="description" content="Residential solar and battery packages from 6.6kW + 18kWh to 13.28kW + 36kWh, plus 30kW, 50kW and 100kW commercial systems. 475W Jinko Tiger NEO panels, Fronius, Sungrow and Solis inverters, installed across Sydney by CEC-accredited electricians.">
 <meta name="theme-color" content="#0B5FA5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#070C14" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/img/logo.png">
@@ -34,10 +34,11 @@ document.documentElement.classList.add("js");})();
         <span class="brand-sub">Solar Investment Australia Pty Ltd.</span>
       </span>
     </a>
+    <img class="nav-badge" src="assets/img/netcc-logo.png" width="40" height="40" alt="New Energy Tech Consumer Code logo">
     <nav class="nav-links" aria-label="Primary">
       <a class="nav-link" href="index.html">Home</a>
       <a class="nav-link" href="packages.html" aria-current="page">Solar Packages</a>
-      <a class="nav-link" href="batteries.html">Batteries &amp; EV</a>
+      <a class="nav-link" href="rebates.html">Rebates</a>
       <a class="nav-link" href="projects.html">Projects</a>
       <a class="nav-link" href="about.html">About</a>
       <a class="nav-link" href="contact.html">Contact</a>
@@ -67,7 +68,7 @@ document.documentElement.classList.add("js");})();
     <nav aria-label="Mobile">
       <a class="drawer-link" href="index.html">Home</a>
       <a class="drawer-link" href="packages.html" aria-current="page">Solar Packages</a>
-      <a class="drawer-link" href="batteries.html">Batteries &amp; EV</a>
+      <a class="drawer-link" href="rebates.html">Rebates</a>
       <a class="drawer-link" href="projects.html">Projects</a>
       <a class="drawer-link" href="about.html">About</a>
       <a class="drawer-link" href="contact.html">Contact</a>
@@ -91,12 +92,108 @@ document.documentElement.classList.add("js");})();
     </nav>
     <div class="section-head" style="margin-bottom:0">
       <p class="eyebrow">Solar packages</p>
-      <h1 class="h-lg">Systems sized for real Australian roofs.</h1>
-      <p class="lead">
-        Every Sinvesta system uses high-efficiency 475W Jinko Tiger&nbsp;NEO N-Type modules with a 30-year
-        linear output warranty, matched to a Fronius, Sungrow or Solis inverter and installed
-        by CEC-accredited electricians. Output figures below are annual estimates for Sydney.
+      <h1 class="h-lg">Systems sized for <em class="hl">real Australian roofs.</em></h1>
+      <p class="lead lead--compact">Premium panels, accredited installers. Outputs are yearly estimates for Sydney.</p>
+      <ul class="tags">
+        <li>475W Jinko Tiger NEO</li><li>30-year output warranty</li><li>Accredited installers</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SAVINGS ESTIMATOR -->
+<section class="section--tight" id="calculator" style="scroll-margin-top:80px">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Savings estimator</p>
+      <h2 class="h-md">What could solar do to <em class="hl">your bill?</em></h2>
+      <p class="lead lead--17">
+        Tell us your bill and your home. We size the system the same way our written proposals do,
+        then show the savings month by month.
       </p>
+    </div>
+
+    <div class="se" id="se">
+      <!-- Column 1: inputs and the recommended system -->
+      <div class="se-col calc-panel">
+        <div class="field">
+          <div class="field-head">
+            <label for="se-bill">Your electricity bill</label>
+            <span class="field-val" id="se-bill-out">$1,450</span>
+          </div>
+          <div class="seg seg--sm" role="group" aria-label="Bill period">
+            <button type="button" data-se-period="quarter" aria-pressed="true">Per quarter</button>
+            <button type="button" data-se-period="month" aria-pressed="false">Per month</button>
+          </div>
+          <input type="range" id="se-bill" min="200" max="6000" step="25" value="1450" aria-describedby="se-bill-hint">
+          <p class="field-hint" id="se-bill-hint">Before solar, including supply charges.</p>
+        </div>
+
+        <div class="field">
+          <div class="field-head"><label id="se-storey-label">Your home</label></div>
+          <div class="seg" role="group" aria-labelledby="se-storey-label">
+            <button type="button" data-se-storey="single" aria-pressed="true">Single storey</button>
+            <button type="button" data-se-storey="double" aria-pressed="false">Double storey</button>
+          </div>
+        </div>
+
+        <div class="se-rec" id="se-rec" aria-live="polite">
+          <div class="se-rec-std" id="se-rec-std">
+            <p class="se-rec-k">Recommended system</p>
+            <p class="se-rec-v"><span id="se-kw">15</span><small>kW</small></p>
+            <p class="se-rec-bat">+ <span id="se-kwh">45</span><small>kWh battery</small></p>
+            <p class="se-rec-detail" id="se-rec-detail">32 × 475W Jinko panels · 5 × 9 kWh Sigenergy modules</p>
+            <p class="se-rec-note" id="se-rec-note">Premium large-scale residential or light commercial setup.</p>
+            <a class="se-rec-link" id="se-rec-link" href="#p1045">Closest package: 10.45kW + 27kWh →</a>
+          </div>
+          <!-- Shown instead for bills over $1,500 a quarter -->
+          <div class="se-rec-custom" id="se-rec-custom" hidden>
+            <p class="se-rec-k">Specialised solar solution</p>
+            <p class="se-rec-title">Custom High-Capacity System</p>
+            <p class="se-rec-msg">For quarterly electricity bills over $1,500, standard packages may not cover your energy demands. Please contact our solar experts for a tailored custom engineering proposal.</p>
+            <a class="btn btn--gold btn--block" id="se-expert" href="contact.html#quote-form">Contact Our Experts</a>
+          </div>
+        </div>
+        <p class="field-hint" id="se-storey-note"></p>
+      </div>
+
+      <!-- Column 2: savings summary -->
+      <div class="se-col result se-result" aria-live="polite">
+        <div class="result-main">
+          <p class="result-label">Estimated bill reduction</p>
+          <p class="result-value" id="se-save-q">$0</p>
+          <p class="se-per" id="se-save-sub">per quarter</p>
+        </div>
+        <div class="se-bills" aria-hidden="true">
+          <div class="se-bill-bar"><span>Now</span><i id="se-bar-before" style="--w:100%"></i><b id="se-before">$0</b></div>
+          <div class="se-bill-bar se-bill-bar--after"><span>With solar</span><i id="se-bar-after" style="--w:30%"></i><b id="se-after">$0</b></div>
+        </div>
+        <dl class="result-rows">
+          <div class="result-row"><dt>Saving per year</dt><dd id="se-save-y">$0</dd></div>
+          <div class="result-row"><dt>Solar self-consumption</dt><dd id="se-sc">0%</dd></div>
+          <div class="result-row"><dt>Usage covered by solar</dt><dd id="se-cover">0%</dd></div>
+          <div class="result-row"><dt>Solar generated</dt><dd id="se-gen">0 kWh/yr</dd></div>
+          <div class="result-row"><dt>Roof area needed</dt><dd id="se-roof">0 m²</dd></div>
+        </dl>
+        <p class="result-note">
+          <strong>How this is worked out:</strong> your bill sets the system: under $600 a quarter, 6.6&nbsp;kW + 18&nbsp;kWh; $600–$800, 10&nbsp;kW + 27&nbsp;kWh; $801–$1,000, 13&nbsp;kW + 36&nbsp;kWh; $1,001–$1,500, 15&nbsp;kW + 45&nbsp;kWh; over $1,500, a custom-engineered proposal. Usage is your bill ÷ 33c/kWh, solar yields 4.1&nbsp;kWh per kW a day (Sydney), 83% of it is used on site and exports earn 5c/kWh. Your real result depends on your roof and tariff. See what the government adds in the <a href="rebates.html#estimator" style="color:var(--accent-bright)">rebate estimator</a>.
+        </p>
+      </div>
+
+      <!-- Column 3: month-by-month chart -->
+      <div class="se-col se-chart-card">
+        <div class="se-chart-head">
+          <p class="se-chart-title">Month by month</p>
+          <p class="se-chart-unit">kWh per month</p>
+        </div>
+        <ul class="se-legend">
+          <li><i class="se-key se-key--before"></i>Consumption before solar</li>
+          <li><i class="se-key se-key--after"></i>Consumption after solar</li>
+          <li><i class="se-key se-key--gen"></i>Solar generation</li>
+        </ul>
+        <div class="se-chart" id="se-chart" role="img" aria-label="Monthly solar generation and consumption chart"></div>
+        <p class="se-chart-note">With solar and a battery working together, the power you buy sits close to zero all year.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -104,7 +201,7 @@ document.documentElement.classList.add("js");})();
 <!-- COMPARISON TABLE -->
 <section class="section--tight" style="padding-top:var(--sp-7)">
   <div class="container">
-    <h2 class="h-sm" style="margin-bottom:var(--sp-5)">Compare at a glance</h2>
+    <h2 class="h-sm" style="margin-bottom:var(--sp-5)">Compare <em class="hl">at a glance</em></h2>
     <div class="table-wrap">
       <table class="compare">
         <caption class="sr-only">Comparison of Sinvesta solar packages</caption>
@@ -114,7 +211,9 @@ document.documentElement.classList.add("js");})();
             <th scope="col">Panels</th>
             <th scope="col">Est. annual output</th>
             <th scope="col">Inverter</th>
-            <th scope="col">From</th>
+            <th scope="col">Battery</th>
+            <th scope="col">Est. saving / yr</th>
+            <th scope="col">Price</th>
             <th scope="col">Best suited to</th>
           </tr>
         </thead>
@@ -123,39 +222,39 @@ document.documentElement.classList.add("js");})();
             <th scope="row"><a class="sys-pill" href="#p66">6.6<span>kW</span></a></th>
             <td>14 × 475W</td>
             <td>~9,950 kWh</td>
-            <td>5kW Fronius Primo</td>
-            <td><span class="price">$4,500</span></td>
+            <td>5kW Sigenergy SigenStor</td>
+            <td>18 kWh SigEnergy</td>
+            <td>up to ~$2,800</td>
+            <td><a class="quote-link" href="contact.html?system=6.6kW">Request quote</a></td>
             <td class="suited">1–4 person homes</td>
           </tr>
           <tr>
             <th scope="row"><a class="sys-pill" href="#p1045">10.45<span>kW</span></a></th>
             <td>22 × 475W</td>
             <td>~15,640 kWh</td>
-            <td>8kW Sungrow</td>
-            <td><span class="price">$15,500</span><span class="price-note">incl. 20kWh battery</span></td>
+            <td>8kW Sigenergy SigenStor</td>
+            <td>27 kWh SigEnergy</td>
+            <td>up to ~$4,400</td>
+            <td><a class="quote-link" href="contact.html?system=10.45kW">Request quote</a></td>
             <td class="suited">Larger family homes</td>
           </tr>
           <tr>
             <th scope="row"><a class="sys-pill" href="#p1328">13.28<span>kW</span></a></th>
             <td>28 × 475W</td>
             <td>~19,900 kWh</td>
-            <td>10kW Sungrow</td>
-            <td><span class="price">$18,500</span><span class="price-note">incl. 25kWh battery</span></td>
+            <td>10kW Sigenergy SigenStor</td>
+            <td>36 kWh SigEnergy</td>
+            <td>up to ~$5,700</td>
+            <td><a class="quote-link" href="contact.html?system=13.28kW">Request quote</a></td>
             <td class="suited">High usage &amp; EV homes</td>
-          </tr>
-          <tr>
-            <th scope="row"><a class="sys-pill" href="#p20">20<span>kW</span></a></th>
-            <td>20,335 W array</td>
-            <td>~30,400 kWh</td>
-            <td>1 × 20kW Solis</td>
-            <td><a class="quote-link" href="contact.html?system=20kW">Request quote</a></td>
-            <td class="suited">Small business</td>
           </tr>
           <tr>
             <th scope="row"><a class="sys-pill" href="#p30">30<span>kW</span></a></th>
             <td>30,295 W array</td>
             <td>~45,300 kWh</td>
             <td>1 × 30kW Solis</td>
+            <td>On request</td>
+            <td>Site-specific</td>
             <td><a class="quote-link" href="contact.html?system=30kW">Request quote</a></td>
             <td class="suited">Mid-size commercial</td>
           </tr>
@@ -164,8 +263,20 @@ document.documentElement.classList.add("js");})();
             <td>50,215 W array</td>
             <td>~75,100 kWh</td>
             <td>30 + 10 + 10kW Solis</td>
+            <td>On request</td>
+            <td>Site-specific</td>
             <td><a class="quote-link" href="contact.html?system=50kW">Request quote</a></td>
             <td class="suited">Large commercial</td>
+          </tr>
+          <tr>
+            <th scope="row"><a class="sys-pill" href="#p100">100<span>kW</span></a></th>
+            <td>100,015 W array</td>
+            <td>~149,700 kWh</td>
+            <td>Engineered to site</td>
+            <td>On request</td>
+            <td>Site-specific</td>
+            <td><a class="quote-link" href="contact.html?system=100kW">Request quote</a></td>
+            <td class="suited">Industrial &amp; large sites</td>
           </tr>
         </tbody>
       </table>
@@ -183,13 +294,13 @@ document.documentElement.classList.add("js");})();
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">Residential</p>
-      <h2 class="h-md">For the home.</h2>
+      <h2 class="h-md">For the <em class="hl">home.</em></h2>
     </div>
 
     <div class="flow">
 
-      <!-- 6.6kW -->
-      <article class="card reveal" id="p66" style="scroll-margin-top:100px">
+      <!-- 6.6kW + 18kWh -->
+      <article class="card pkg-tilt pkg-tilt--wide pkg-res reveal" id="p66" style="scroll-margin-top:100px">
         <div class="split" style="gap:0">
           <div class="split-media" style="border-radius:0;box-shadow:none">
             <img src="assets/img/roof-tile-1.jpg" alt="Solar panels installed on a tiled residential roof in Sydney." loading="lazy">
@@ -197,40 +308,43 @@ document.documentElement.classList.add("js");})();
           <div class="card-body" style="padding:clamp(1.5rem,4vw,2.5rem)">
             <span class="badge">Residential</span>
             <div class="pkg-size">6.6<span>kW</span></div>
+            <p class="pkg-battery">+ 18<span>kWh battery</span></p>
             <p class="pkg-for">Small to medium homes · 1–4 people</p>
             <p class="muted">
-              The most common system in Australia, and for good reason. A 6.6kW array pairs
-              with a 5kW inverter to make the most of the rebate and typically covers the
-              daytime load of an average household with room to spare.
+              The most common system in Australia, now paired with storage. A 6.6kW array covers the
+              daytime load of an average household, and the 18&nbsp;kWh battery holds the surplus for the
+              evening instead of exporting it for a few cents.
             </p>
             <div class="spec">
               <div class="spec-row"><span class="spec-k">Panels</span><span class="spec-v">14 × 475W Jinko</span></div>
               <div class="spec-row"><span class="spec-k">Array output</span><span class="spec-v">6,650 W</span></div>
               <div class="spec-row"><span class="spec-k">Est. annual generation</span><span class="spec-v">~9,950 kWh</span></div>
-              <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">1 &times; 5kW Fronius Primo</span></div>
+              <div class="spec-row"><span class="spec-k">Battery</span><span class="spec-v">18 kWh SigEnergy, expandable</span></div>
+              <div class="spec-row"><span class="spec-k">Avg. daily generation</span><span class="spec-v">~27 kWh</span></div>
+              <div class="spec-row"><span class="spec-k">Blackout backup</span><span class="spec-v">Supported*</span></div>
+              <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">1 &times; 5kW Sigenergy SigenStor</span></div>
               <div class="spec-row"><span class="spec-k">Roof area needed</span><span class="spec-v">~30 m²</span></div>
               <div class="spec-row"><span class="spec-k">Panel warranty</span><span class="spec-v">30-year linear output</span></div>
             </div>
             <div class="pkg-price">
-              <span class="pkg-price-was">$5,500</span>
-              <span class="pkg-price-now">$4,500</span>
-              <span class="pkg-price-tag">After finance incentive</span>
-              <p class="pkg-price-note">Fully installed, solar only. Estimated saving $1,300&ndash;$2,300 a year.</p>
+              <a class="pkg-price-quote" href="contact.html?system=6.6kW">Request a quote</a>
+              <p class="pkg-price-note">Fully installed <strong>including an 18&nbsp;kWh SigEnergy battery</strong>. Estimated saving up to ~$2,800 a year, depending on your bill.</p>
             </div>
             <ul class="ticks">
-              <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Battery-ready wiring included</li>
+              <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Battery can be expanded later without replacing it</li>
               <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Online monitoring set up on handover</li>
               <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>STC rebate deducted from your quote</li>
             </ul>
             <div class="card-foot btn-row">
               <a class="btn btn--primary" href="contact.html?system=6.6kW">Quote this system</a>
-              <a class="btn btn--ghost" href="index.html#calculator">Estimate savings</a>
+              <a class="btn btn--ghost" href="#calculator">Estimate savings</a>
             </div>
+          </div>
         </div>
       </article>
 
-      <!-- 10.45kW -->
-      <article class="card reveal" id="p1045" style="scroll-margin-top:100px;border-color:var(--accent-bright);box-shadow:var(--shadow-glow)">
+      <!-- 10.45kW + 27kWh -->
+      <article class="card pkg-tilt pkg-tilt--wide pkg-res reveal" id="p1045" style="scroll-margin-top:100px;border-color:var(--accent-bright);box-shadow:var(--shadow-glow)">
         <div class="split split--reverse" style="gap:0">
           <div class="split-media" style="border-radius:0;box-shadow:none">
             <img src="assets/img/roof-dusk.jpg" alt="Larger residential solar array photographed at dusk." loading="lazy">
@@ -238,25 +352,27 @@ document.documentElement.classList.add("js");})();
           <div class="card-body" style="padding:clamp(1.5rem,4vw,2.5rem)">
             <span class="badge badge--gold">Most popular</span>
             <div class="pkg-size">10.45<span>kW</span></div>
+            <p class="pkg-battery">+ 27<span>kWh battery</span></p>
             <p class="pkg-for">Larger family homes · ducted air-con, pool</p>
             <p class="muted">
               Our best-value residential package. This is a full-service job: we review your
-              actual energy usage, look at when you draw power, and size the array around how
-              your household really runs rather than a number off a price list.
+              actual energy usage, look at when you draw power, and size the array and the 27&nbsp;kWh
+              battery around how your household really runs rather than a number off a price list.
             </p>
             <div class="spec">
               <div class="spec-row"><span class="spec-k">Panels</span><span class="spec-v">22 × 475W Jinko</span></div>
               <div class="spec-row"><span class="spec-k">Array output</span><span class="spec-v">10,450 W</span></div>
               <div class="spec-row"><span class="spec-k">Est. annual generation</span><span class="spec-v">~15,640 kWh</span></div>
-              <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">1 &times; 8kW Sungrow</span></div>
+              <div class="spec-row"><span class="spec-k">Battery</span><span class="spec-v">27 kWh SigEnergy, expandable</span></div>
+              <div class="spec-row"><span class="spec-k">Avg. daily generation</span><span class="spec-v">~43 kWh</span></div>
+              <div class="spec-row"><span class="spec-k">Blackout backup</span><span class="spec-v">Supported*</span></div>
+              <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">1 &times; 8kW Sigenergy SigenStor</span></div>
               <div class="spec-row"><span class="spec-k">Roof area needed</span><span class="spec-v">~48 m²</span></div>
               <div class="spec-row"><span class="spec-k">Panel warranty</span><span class="spec-v">30-year linear output</span></div>
             </div>
             <div class="pkg-price">
-              <span class="pkg-price-was">$17,500</span>
-              <span class="pkg-price-now">$15,500</span>
-              <span class="pkg-price-tag">After finance incentive</span>
-              <p class="pkg-price-note">Fully installed <strong>including a 20&nbsp;kWh Sungrow battery</strong>. Estimated saving $3,000&ndash;$4,000 a year.</p>
+              <a class="pkg-price-quote" href="contact.html?system=10.45kW">Request a quote</a>
+              <p class="pkg-price-note">Fully installed <strong>including a 27&nbsp;kWh SigEnergy battery</strong>. Estimated saving up to ~$4,400 a year, depending on your bill.</p>
             </div>
             <ul class="ticks">
               <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Energy usage review before design</li>
@@ -265,14 +381,14 @@ document.documentElement.classList.add("js");})();
             </ul>
             <div class="card-foot btn-row">
               <a class="btn btn--gold" href="contact.html?system=10.45kW">Quote this system</a>
-              <a class="btn btn--ghost" href="index.html#calculator">Estimate savings</a>
+              <a class="btn btn--ghost" href="#calculator">Estimate savings</a>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- 13.28kW -->
-      <article class="card reveal" id="p1328" style="scroll-margin-top:100px">
+      <!-- 13.28kW + 36kWh -->
+      <article class="card pkg-tilt pkg-tilt--wide pkg-res reveal" id="p1328" style="scroll-margin-top:100px">
         <div class="split" style="gap:0">
           <div class="split-media" style="border-radius:0;box-shadow:none">
             <img src="assets/img/inverter-symo-branded.jpg" alt="Fronius Symo Advanced inverter commissioned and labelled by Sinvesta Group." loading="lazy">
@@ -280,38 +396,42 @@ document.documentElement.classList.add("js");})();
           <div class="card-body" style="padding:clamp(1.5rem,4vw,2.5rem)">
             <span class="badge">Residential</span>
             <div class="pkg-size">13.28<span>kW</span></div>
+            <p class="pkg-battery">+ 36<span>kWh battery</span></p>
             <p class="pkg-for">High-usage households &amp; EV owners</p>
             <p class="muted">
               Outstanding performance for homes that run hard — multiple air-conditioners,
-              a pool, a workshop, or an electric car in the garage. This is also the system
-              we most often pair with a Tesla Powerwall 3.
+              a pool, a workshop, or an electric car in the garage. The 36&nbsp;kWh battery gives
+              enough storage to carry a heavy evening load.
             </p>
             <div class="spec">
               <div class="spec-row"><span class="spec-k">Panels</span><span class="spec-v">28 × 475W Jinko</span></div>
               <div class="spec-row"><span class="spec-k">Array output</span><span class="spec-v">13,300 W</span></div>
               <div class="spec-row"><span class="spec-k">Est. annual generation</span><span class="spec-v">~19,900 kWh</span></div>
-              <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">1 &times; 10kW Sungrow</span></div>
+              <div class="spec-row"><span class="spec-k">Battery</span><span class="spec-v">36 kWh SigEnergy, expandable</span></div>
+              <div class="spec-row"><span class="spec-k">Avg. daily generation</span><span class="spec-v">~55 kWh</span></div>
+              <div class="spec-row"><span class="spec-k">Blackout backup</span><span class="spec-v">Supported*</span></div>
+              <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">1 &times; 10kW Sigenergy SigenStor</span></div>
               <div class="spec-row"><span class="spec-k">Roof area needed</span><span class="spec-v">~60 m²</span></div>
-              <div class="spec-row"><span class="spec-k">Battery pairing</span><span class="spec-v">Tesla Powerwall 3</span></div>
+              <div class="spec-row"><span class="spec-k">Panel warranty</span><span class="spec-v">30-year linear output</span></div>
             </div>
             <div class="pkg-price">
-              <span class="pkg-price-was">$20,500</span>
-              <span class="pkg-price-now">$18,500</span>
-              <span class="pkg-price-tag">After finance incentive</span>
-              <p class="pkg-price-note">Fully installed <strong>including 25&nbsp;kWh storage or a Tesla Powerwall&nbsp;3</strong>. Estimated saving $4,000&ndash;$5,000 a year.</p>
+              <a class="pkg-price-quote" href="contact.html?system=13.28kW">Request a quote</a>
+              <p class="pkg-price-note">Fully installed <strong>including a 36&nbsp;kWh SigEnergy battery</strong>. Estimated saving up to ~$5,700 a year, depending on your bill.</p>
             </div>
             <ul class="ticks">
               <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Covers home EV charging from daytime surplus</li>
-              <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Available bundled with Powerwall 3 (13.5 kWh)</li>
+              <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Tesla Powerwall 3 available instead</li>
               <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Three-phase compatible</li>
             </ul>
             <div class="card-foot btn-row">
               <a class="btn btn--primary" href="contact.html?system=13.28kW">Quote this system</a>
-              <a class="btn btn--ghost" href="batteries.html">Add a battery</a>
+              <a class="btn btn--ghost" href="rebates.html#estimator">See battery rebates</a>
             </div>
           </div>
         </div>
       </article>
+
+      <p class="faint">*Blackout backup depends on how your switchboard is configured. Savings use the same assumptions as the <a href="#calculator">savings estimator</a> above.</p>
 
     </div>
   </div>
@@ -322,8 +442,8 @@ document.documentElement.classList.add("js");})();
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">Commercial &amp; industrial</p>
-      <h2 class="h-md">For the business.</h2>
-      <p class="lead">
+      <h2 class="h-md">For the <em class="hl">business.</em></h2>
+      <p class="lead lead--17">
         Commercial solar works because your load and the sun peak at the same time. Every
         kilowatt-hour you generate at 1pm is one you don't buy at your highest tariff.
         We install with CEC-accredited crews and flexible mounting for tin, tile and Klip-Lok.
@@ -332,27 +452,7 @@ document.documentElement.classList.add("js");})();
 
     <div class="grid grid-3">
 
-      <article class="pkg reveal" id="p20" style="scroll-margin-top:100px">
-        <div>
-          <span class="badge">Commercial</span>
-          <div class="pkg-size" style="margin-top:var(--sp-3)">20<span>kW</span></div>
-          <p class="pkg-for">Small business &amp; warehouse</p>
-        </div>
-        <p class="pkg-desc">Offsets daytime load where it costs most — during business hours, when your tariff is highest.</p>
-        <div class="spec">
-          <div class="spec-row"><span class="spec-k">Array output</span><span class="spec-v">20,335 W</span></div>
-          <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">1 × 20kW Solis</span></div>
-          <div class="spec-row"><span class="spec-k">Est. annual gen.</span><span class="spec-v">~30,400 kWh</span></div>
-          <div class="spec-row"><span class="spec-k">Mounting</span><span class="spec-v">Tin / tile / Klip-Lok</span></div>
-        </div>
-        <ul class="ticks">
-          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>CEC-accredited install crew</li>
-          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Grid application handled for you</li>
-        </ul>
-        <div class="card-foot"><a class="btn btn--outline btn--block" href="contact.html?system=20kW">Request a quote</a></div>
-      </article>
-
-      <article class="pkg reveal" id="p30" style="scroll-margin-top:100px">
+      <article class="pkg-tilt pkg reveal" id="p30" style="scroll-margin-top:100px">
         <div>
           <span class="badge">Commercial</span>
           <div class="pkg-size" style="margin-top:var(--sp-3)">30<span>kW</span></div>
@@ -372,7 +472,7 @@ document.documentElement.classList.add("js");})();
         <div class="card-foot"><a class="btn btn--outline btn--block" href="contact.html?system=30kW">Request a quote</a></div>
       </article>
 
-      <article class="pkg reveal" id="p50" style="scroll-margin-top:100px">
+      <article class="pkg-tilt pkg reveal" id="p50" style="scroll-margin-top:100px">
         <div>
           <span class="badge">Commercial</span>
           <div class="pkg-size" style="margin-top:var(--sp-3)">50<span>kW</span></div>
@@ -391,6 +491,26 @@ document.documentElement.classList.add("js");})();
         </ul>
         <div class="card-foot"><a class="btn btn--outline btn--block" href="contact.html?system=50kW">Request a quote</a></div>
       </article>
+
+      <article class="pkg-tilt pkg reveal" id="p100" style="scroll-margin-top:100px">
+        <div>
+          <span class="badge">Commercial</span>
+          <div class="pkg-size" style="margin-top:var(--sp-3)">100<span>kW</span></div>
+          <p class="pkg-for">Industrial &amp; large sites</p>
+        </div>
+        <p class="pkg-desc">For warehouses, factories and large sites, designed around your roof and load and commissioned in stages so operations keep running.</p>
+        <div class="spec">
+          <div class="spec-row"><span class="spec-k">Array output</span><span class="spec-v">100,015 W</span></div>
+          <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">Engineered to site</span></div>
+          <div class="spec-row"><span class="spec-k">Est. annual gen.</span><span class="spec-v">~149,700 kWh</span></div>
+          <div class="spec-row"><span class="spec-k">Mounting</span><span class="spec-v">Engineered to site</span></div>
+        </div>
+        <ul class="ticks">
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Structural assessment included</li>
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Grid application handled for you</li>
+        </ul>
+        <div class="card-foot"><a class="btn btn--outline btn--block" href="contact.html?system=100kW">Request a quote</a></div>
+      </article>
     </div>
 
     <div class="split" style="margin-top:var(--sp-8)">
@@ -398,7 +518,7 @@ document.documentElement.classList.add("js");})();
         <img src="assets/img/roof-commercial.jpg" alt="Commercial solar array installed on a metal warehouse roof." loading="lazy">
       </div>
       <div class="flow">
-        <h3 class="h-sm">Bigger than 50kW?</h3>
+        <h3 class="h-sm">Bigger than 100kW?</h3>
         <p class="muted">
           We also design industrial systems beyond the standard packages — multiple arrays,
           three-phase, and staged commissioning. Send us your roof plan and twelve months of
@@ -417,10 +537,10 @@ document.documentElement.classList.add("js");})();
   <div class="container">
     <div class="section-head section-head--center">
       <p class="eyebrow eyebrow--center">Every package</p>
-      <h2 class="h-md">What you get, whichever size you pick.</h2>
+      <h2 class="h-md"><em class="hl">What you get,</em> whichever size you pick.</h2>
     </div>
 
-    <div class="grid grid-3">
+    <div class="grid grid-3 features-vivid">
       <div class="feature">
         <span class="feature-icon" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 9.2 8 10 4.6-.8 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></span>
         <div>
@@ -473,7 +593,7 @@ document.documentElement.classList.add("js");})();
       <div class="cta-band-bg"><img src="assets/img/roof-flat.jpg" alt="" loading="lazy"></div>
       <div class="flow" style="max-width:640px;margin-inline:auto">
         <p class="eyebrow eyebrow--center" style="justify-content:center;color:var(--accent-bright)">No obligation</p>
-        <h2>Not sure which size fits?</h2>
+        <h2>Not sure <em class="hl">which size fits?</em></h2>
         <p>Send through your last power bill. We'll model your usage against your roof and come back with the size that actually pays — not the biggest one we can sell you.</p>
         <div class="btn-row">
           <a class="btn btn--gold btn--lg" href="contact.html">Get my free quote</a>
@@ -505,21 +625,22 @@ document.documentElement.classList.add("js");})();
       <div>
         <h4>Packages</h4>
         <div class="footer-links">
-          <a href="packages.html#p66">6.6kW system</a>
-          <a href="packages.html#p1045">10.45kW system</a>
-          <a href="packages.html#p1328">13.28kW system</a>
-          <a href="packages.html#p20">20kW commercial</a>
+          <a href="packages.html#p66">6.6kW + 18kWh battery</a>
+          <a href="packages.html#p1045">10.45kW + 27kWh battery</a>
+          <a href="packages.html#p1328">13.28kW + 36kWh battery</a>
           <a href="packages.html#p30">30kW commercial</a>
           <a href="packages.html#p50">50kW commercial</a>
+          <a href="packages.html#p100">100kW commercial</a>
         </div>
       </div>
       <div>
         <h4>Solutions</h4>
         <div class="footer-links">
-          <a href="batteries.html">Battery storage</a>
-          <a href="batteries.html#offgrid">Off-grid systems</a>
-          <a href="batteries.html#ev">EV charging</a>
-          <a href="index.html#calculator">Savings estimator</a>
+          <a href="index.html#batteries">Battery storage</a>
+          <a href="contact.html?system=Off-grid">Off-grid systems</a>
+          <a href="index.html#ev">EV charging</a>
+          <a href="rebates.html#estimator">Rebate estimator</a>
+          <a href="packages.html#calculator">Savings estimator</a>
           <a href="projects.html">Projects</a>
         </div>
       </div>

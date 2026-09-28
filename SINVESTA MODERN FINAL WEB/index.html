@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sinvesta Group — Solar, Battery &amp; EV Charging in Sydney</title>
-<meta name="description" content="Sydney solar specialists since 2016. Residential and commercial solar systems from 6.6kW to 50kW, Tesla Powerwall and Sungrow batteries, off-grid systems and EV charger installs. 2,500+ projects completed. Free quote: 0415 301 979.">
+<meta name="description" content="Sydney solar specialists since 2016. Residential and commercial solar systems from 6.6kW to 100kW, Tesla Powerwall and Sungrow batteries, off-grid systems and EV charger installs. 2,500+ projects completed. Free quote: 0415 301 979.">
 <meta name="theme-color" content="#0B5FA5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#070C14" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://www.sinvesta.com.au/">
@@ -74,10 +74,12 @@ document.documentElement.classList.add("js");})();
       </span>
     </a>
 
+    <img class="nav-badge" src="assets/img/netcc-logo.png" width="40" height="40" alt="New Energy Tech Consumer Code logo">
+
     <nav class="nav-links" aria-label="Primary">
       <a class="nav-link" href="index.html" aria-current="page">Home</a>
       <a class="nav-link" href="packages.html">Solar Packages</a>
-      <a class="nav-link" href="batteries.html">Batteries &amp; EV</a>
+      <a class="nav-link" href="rebates.html">Rebates</a>
       <a class="nav-link" href="projects.html">Projects</a>
       <a class="nav-link" href="about.html">About</a>
       <a class="nav-link" href="contact.html">Contact</a>
@@ -111,7 +113,7 @@ document.documentElement.classList.add("js");})();
     <nav aria-label="Mobile">
       <a class="drawer-link" href="index.html" aria-current="page">Home</a>
       <a class="drawer-link" href="packages.html">Solar Packages</a>
-      <a class="drawer-link" href="batteries.html">Batteries &amp; EV</a>
+      <a class="drawer-link" href="rebates.html">Rebates</a>
       <a class="drawer-link" href="projects.html">Projects</a>
       <a class="drawer-link" href="about.html">About</a>
       <a class="drawer-link" href="contact.html">Contact</a>
@@ -152,9 +154,18 @@ document.documentElement.classList.add("js");})();
       </div>
 
       <ul class="hero-trust">
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>30-year panel warranty</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>CEC-accredited installers</li>
-        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Finance available</li>
+        <li class="hero-accred" aria-label="Accreditations and memberships">
+          <img src="assets/img/partners/smart-energy-council.png" width="354" height="264" alt="Smart Energy Council logo">
+          <img src="assets/img/netcc-logo.png" width="120" height="120" alt="New Energy Tech Consumer Code Approved Seller logo">
+          <img src="assets/img/partners/saa.png" width="481" height="139" alt="Solar Accreditation Australia logo">
+        </li>
+        <li class="hero-trust-finance"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Finance available
+          <span class="finance-partners">
+            <img src="assets/img/partners/brighte.png" width="62" height="16" alt="Brighte Logo">
+            <img src="assets/img/partners/plenti.png" width="51" height="16" alt="Plenti Logo">
+            <img src="assets/img/partners/smart-ease.png" width="100" height="16" alt="Smart Ease Logo">
+          </span>
+        </li>
       </ul>
     </div>
 
@@ -167,14 +178,14 @@ document.documentElement.classList.add("js");})();
 
       <div>
         <div class="readout-figure">
-          <span class="readout-value">90.24</span>
+          <span class="readout-value">65.00</span>
           <span class="readout-unit">kWh</span>
         </div>
-        <p class="readout-caption">A 13.28kW Sinvesta system in Sydney's north-west, one clear day.</p>
+        <p class="readout-caption">A 13.28kW Sinvesta system in Sydney's north-west: clear morning, cloud through the afternoon.</p>
       </div>
 
       <div class="curve-wrap">
-        <svg class="curve" viewBox="0 0 320 96" preserveAspectRatio="none" role="img" aria-label="Solar production curve peaking around midday">
+        <svg class="curve" viewBox="0 0 320 96" preserveAspectRatio="none" role="img" aria-label="Solar output over one day: nothing overnight, a sharp peak of about 11 kW at noon, then passing cloud through the afternoon">
           <defs>
             <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%"  stop-color="#FFC64D" stop-opacity=".55"/>
@@ -182,11 +193,16 @@ document.documentElement.classList.add("js");})();
             </linearGradient>
           </defs>
           <g class="curve-fill">
-            <path d="M0,94 C40,94 58,88 74,66 C90,44 100,12 128,10 C150,8 160,26 178,30 C196,34 206,18 226,22 C248,26 262,64 282,84 C296,94 310,94 320,94 L320,96 L0,96 Z" fill="url(#cg)"/>
+            <path d="M0.0,94.0 L85.3,94.0 L88.0,91.0 L90.7,81.8 L93.3,71.2 L97.3,64.4 L102.7,62.1 L109.3,53.0 L116.0,43.1 L122.7,35.5 L129.3,27.9 L136.0,22.6 L142.7,17.2 L149.3,12.7 L156.0,11.2 L160.0,10.4 L166.7,11.2 L172.0,15.0 L177.3,21.8 L180.0,28.6 L181.3,41.6 L182.7,27.9 L186.7,33.2 L189.3,45.4 L190.7,56.8 L192.0,43.1 L197.3,43.8 L200.0,53.7 L201.3,77.3 L204.0,76.5 L206.7,58.3 L208.0,75.0 L212.0,85.6 L217.3,89.4 L220.0,78.8 L222.7,87.2 L226.7,83.4 L232.0,94.0 L320.0,94.0 L320,96 L0,96 Z" fill="url(#cg)"/>
           </g>
-          <path class="curve-line" d="M0,94 C40,94 58,88 74,66 C90,44 100,12 128,10 C150,8 160,26 178,30 C196,34 206,18 226,22 C248,26 262,64 282,84 C296,94 310,94 320,94"/>
+          <path class="curve-line" d="M0.0,94.0 L85.3,94.0 L88.0,91.0 L90.7,81.8 L93.3,71.2 L97.3,64.4 L102.7,62.1 L109.3,53.0 L116.0,43.1 L122.7,35.5 L129.3,27.9 L136.0,22.6 L142.7,17.2 L149.3,12.7 L156.0,11.2 L160.0,10.4 L166.7,11.2 L172.0,15.0 L177.3,21.8 L180.0,28.6 L181.3,41.6 L182.7,27.9 L186.7,33.2 L189.3,45.4 L190.7,56.8 L192.0,43.1 L197.3,43.8 L200.0,53.7 L201.3,77.3 L204.0,76.5 L206.7,58.3 L208.0,75.0 L212.0,85.6 L217.3,89.4 L220.0,78.8 L222.7,87.2 L226.7,83.4 L232.0,94.0 L320.0,94.0"/>
+          <!-- Midday guide and peak marker; non-scaling strokes keep them crisp under preserveAspectRatio="none" -->
+          <g class="curve-fill">
+            <line class="curve-guide" x1="160" y1="0" x2="160" y2="96" vector-effect="non-scaling-stroke"/>
+            <line class="curve-peak" x1="160" y1="10.4" x2="160" y2="10.4" vector-effect="non-scaling-stroke"/>
+          </g>
         </svg>
-        <div class="curve-axis"><span>6am</span><span>12pm</span><span>6pm</span></div>
+        <div class="curve-axis"><span>12am</span><span>6am</span><span>12pm</span><span>6pm</span><span>12am</span></div>
       </div>
 
       <div class="readout-stats">
@@ -199,7 +215,7 @@ document.documentElement.classList.add("js");})();
           <div class="readout-stat-l">Self-sufficient</div>
         </div>
         <div>
-          <div class="readout-stat-v">61.4</div>
+          <div class="readout-stat-v">44.2</div>
           <div class="readout-stat-l">kg CO₂ saved</div>
         </div>
       </div>
@@ -212,33 +228,21 @@ document.documentElement.classList.add("js");})();
   </div>
 </section>
 
-<!-- ============ BRAND STRIP ============ -->
-<section class="section--tight" style="border-bottom:1px solid var(--border)">
+<!-- ============ PARTNER STRIP ============ -->
+<!-- Tiles are generated by main.js from PARTNER_LOGOS; the section stays hidden without JS -->
+<section class="section--tight partner-strip" data-partner-strip hidden>
   <div class="container">
     <p class="center faint mono" style="margin-bottom:var(--sp-5);letter-spacing:.14em;text-transform:uppercase">
-      We install and stand behind
+      Our trusted partners
     </p>
     <div class="marquee">
-      <div class="marquee-track">
-        <div class="brand-logo"><img src="assets/img/brands/tesla.png" alt="Tesla logo" loading="lazy" width="148" height="38"></div>
-        <div class="brand-logo"><img src="assets/img/brands/fronius.png" alt="Fronius logo" loading="lazy" width="148" height="38"></div>
-        <div class="brand-logo"><img src="assets/img/brands/sungrow.png" alt="Sungrow logo" loading="lazy" width="148" height="38"></div>
-        <div class="brand-logo"><img src="assets/img/brands/jinko.png" alt="Jinko Solar logo" loading="lazy" width="148" height="38"></div>
-        <div class="brand-logo"><img src="assets/img/brands/sigenergy.png" alt="SigEnergy logo" loading="lazy" width="148" height="38"></div>
-        <div class="brand-logo brand-logo--text">Solis</div>
-        <div class="brand-logo" aria-hidden="true"><img src="assets/img/brands/tesla.png" alt="" loading="lazy" width="148" height="38"></div>
-        <div class="brand-logo" aria-hidden="true"><img src="assets/img/brands/fronius.png" alt="" loading="lazy" width="148" height="38"></div>
-        <div class="brand-logo" aria-hidden="true"><img src="assets/img/brands/sungrow.png" alt="" loading="lazy" width="148" height="38"></div>
-        <div class="brand-logo" aria-hidden="true"><img src="assets/img/brands/jinko.png" alt="" loading="lazy" width="148" height="38"></div>
-        <div class="brand-logo" aria-hidden="true"><img src="assets/img/brands/sigenergy.png" alt="" loading="lazy" width="148" height="38"></div>
-        <div class="brand-logo brand-logo--text" aria-hidden="true">Solis</div>
-      </div>
+      <div class="marquee-track" data-partner-track></div>
     </div>
   </div>
 </section>
 
 <!-- ============ STATS ============ -->
-<section class="section">
+<section class="section type-17">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">Track record</p>
@@ -255,7 +259,7 @@ document.documentElement.classList.add("js");})();
         <span class="stat-l">Years in business</span>
       </div>
       <div class="stat">
-        <span class="stat-v mono" data-count="2300" data-suffix="+">2,300+</span>
+        <span class="stat-v mono" data-count="4000" data-suffix="+">4,000+</span>
         <span class="stat-l">Satisfied clients</span>
       </div>
       <div class="stat">
@@ -270,113 +274,118 @@ document.documentElement.classList.add("js");})();
   </div>
 </section>
 
+<!-- ============ BRAND STRIP ============ -->
+<section class="section--tight" style="border-bottom:1px solid var(--border)">
+  <div class="container">
+    <p class="center faint mono" style="margin-bottom:var(--sp-5);letter-spacing:.14em;text-transform:uppercase">
+      We install and stand behind
+    </p>
+    <div class="marquee">
+      <div class="marquee-track">
+        <div class="brand-logo"><img src="assets/img/brands/tesla.png" alt="Tesla logo" loading="lazy" width="148" height="38"></div>
+        <div class="brand-logo"><img src="assets/img/brands/fronius.png" alt="Fronius logo" loading="lazy" width="148" height="38"></div>
+        <div class="brand-logo"><img src="assets/img/brands/sungrow.png" alt="Sungrow logo" loading="lazy" width="148" height="38"></div>
+        <div class="brand-logo"><img src="assets/img/brands/jinko.png" alt="Jinko Solar logo" loading="lazy" width="148" height="38"></div>
+        <div class="brand-logo"><img src="assets/img/brands/sigenergy.png" alt="SigEnergy logo" loading="lazy" width="148" height="38"></div>
+        <div class="brand-logo" aria-hidden="true"><img src="assets/img/brands/tesla.png" alt="" loading="lazy" width="148" height="38"></div>
+        <div class="brand-logo" aria-hidden="true"><img src="assets/img/brands/fronius.png" alt="" loading="lazy" width="148" height="38"></div>
+        <div class="brand-logo" aria-hidden="true"><img src="assets/img/brands/sungrow.png" alt="" loading="lazy" width="148" height="38"></div>
+        <div class="brand-logo" aria-hidden="true"><img src="assets/img/brands/jinko.png" alt="" loading="lazy" width="148" height="38"></div>
+        <div class="brand-logo" aria-hidden="true"><img src="assets/img/brands/sigenergy.png" alt="" loading="lazy" width="148" height="38"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PACKAGES ============ -->
-<section class="section section--alt" id="packages">
+<section class="section section--alt type-17" id="packages">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">Solar packages</p>
       <h2 class="h-md">Sized to your roof, your bill and your plans.</h2>
-      <p class="lead">
-        Every package uses high-efficiency 475W Jinko Tiger&nbsp;NEO N-Type modules and is installed by
-        CEC-accredited electricians. Sizes below are the ones we fit most often — we'll
-        confirm the right one after looking at your usage.
-      </p>
+      <p class="lead lead--compact">Our most-fitted sizes. We confirm yours after a look at your usage.</p>
+      <ul class="tags">
+        <li>475W Jinko Tiger NEO</li><li>SigEnergy battery included</li><li>Accredited installers</li>
+      </ul>
     </div>
 
     <p class="eyebrow" style="margin-bottom:var(--sp-5)">Residential</p>
     <div class="grid grid-3" style="margin-bottom:var(--sp-8)">
-
-      <article class="pkg reveal">
+      <article class="pkg-tilt pkg-res pkg reveal">
         <div>
           <div class="pkg-size">6.6<span>kW</span></div>
+          <p class="pkg-battery">+ 18<span>kWh battery</span></p>
           <p class="pkg-for">Small to medium homes</p>
         </div>
-        <p class="pkg-desc">The Australian standard. An efficient way to cut a typical household bill without over-building the roof.</p>
+        <p class="pkg-desc">The Australian standard, now with storage. Daytime surplus charges the battery instead of being exported for a few cents.</p>
         <div class="spec">
           <div class="spec-row"><span class="spec-k">Panels</span><span class="spec-v">14 × 475W</span></div>
           <div class="spec-row"><span class="spec-k">Est. output</span><span class="spec-v">~9,950 kWh/yr</span></div>
-          <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">5kW Fronius Primo</span></div>
+          <div class="spec-row"><span class="spec-k">Battery</span><span class="spec-v">18 kWh SigEnergy</span></div>
+          <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">5kW Sigenergy SigenStor</span></div>
         </div>
-          <div class="pkg-price">
-            <span class="pkg-price-was">$5,500</span>
-            <span class="pkg-price-now">$4,500</span>
-            <span class="pkg-price-tag">After finance incentive</span>
-            <p class="pkg-price-note">Fully installed, solar only. Estimated saving $1,300&ndash;$2,300 a year.</p>
-          </div>
+        <div class="pkg-price">
+          <a class="pkg-price-quote" href="contact.html?system=6.6kW">Request a quote</a>
+          <p class="pkg-price-note">Fully installed <strong>including an 18&nbsp;kWh SigEnergy battery</strong>. Estimated saving up to ~$2,800 a year, depending on your bill.</p>
+        </div>
         <ul class="ticks">
           <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ideal for 1–4 person homes</li>
-          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Battery-ready wiring</li>
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Battery can be expanded later</li>
         </ul>
         <div class="card-foot"><a class="btn btn--outline btn--block" href="packages.html#p66">View details</a></div>
       </article>
-
-      <article class="pkg pkg--featured reveal">
+      <article class="pkg-tilt pkg-res pkg pkg--featured reveal">
         <div>
           <div class="pkg-size">10.45<span>kW</span></div>
+          <p class="pkg-battery">+ 27<span>kWh battery</span></p>
           <p class="pkg-for">Larger family homes</p>
         </div>
-        <p class="pkg-desc">Our best-value residential system. Full-service: we review your energy usage and size the array around how you actually live.</p>
+        <p class="pkg-desc">Our best-value residential system. Full-service: we review your energy usage and size the array and battery around how you actually live.</p>
         <div class="spec">
           <div class="spec-row"><span class="spec-k">Panels</span><span class="spec-v">22 × 475W</span></div>
           <div class="spec-row"><span class="spec-k">Est. output</span><span class="spec-v">~15,640 kWh/yr</span></div>
-          <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">8kW Sungrow</span></div>
+          <div class="spec-row"><span class="spec-k">Battery</span><span class="spec-v">27 kWh SigEnergy</span></div>
+          <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">8kW Sigenergy SigenStor</span></div>
         </div>
-          <div class="pkg-price">
-            <span class="pkg-price-was">$17,500</span>
-            <span class="pkg-price-now">$15,500</span>
-            <span class="pkg-price-tag">After finance incentive</span>
-            <p class="pkg-price-note">Fully installed <strong>including a 20&nbsp;kWh Sungrow battery</strong>. Estimated saving $3,000&ndash;$4,000 a year.</p>
-          </div>
+        <div class="pkg-price">
+          <a class="pkg-price-quote" href="contact.html?system=10.45kW">Request a quote</a>
+          <p class="pkg-price-note">Fully installed <strong>including a 27&nbsp;kWh SigEnergy battery</strong>. Estimated saving up to ~$4,400 a year, depending on your bill.</p>
+        </div>
         <ul class="ticks">
           <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Suits ducted air-con &amp; pool</li>
           <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Finance through our lending partners</li>
         </ul>
         <div class="card-foot"><a class="btn btn--primary btn--block" href="packages.html#p1045">View details</a></div>
       </article>
-
-      <article class="pkg reveal">
+      <article class="pkg-tilt pkg-res pkg reveal">
         <div>
           <div class="pkg-size">13.28<span>kW</span></div>
+          <p class="pkg-battery">+ 36<span>kWh battery</span></p>
           <p class="pkg-for">High-usage &amp; EV households</p>
         </div>
-        <p class="pkg-desc">Outstanding performance for households that run hard — and the system we most often pair with a Powerwall 3.</p>
+        <p class="pkg-desc">Outstanding performance for households that run hard, with enough storage to carry a heavy evening load.</p>
         <div class="spec">
           <div class="spec-row"><span class="spec-k">Panels</span><span class="spec-v">28 × 475W</span></div>
           <div class="spec-row"><span class="spec-k">Est. output</span><span class="spec-v">~19,900 kWh/yr</span></div>
-          <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">10kW Sungrow</span></div>
+          <div class="spec-row"><span class="spec-k">Battery</span><span class="spec-v">36 kWh SigEnergy</span></div>
+          <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">10kW Sigenergy SigenStor</span></div>
         </div>
-          <div class="pkg-price">
-            <span class="pkg-price-was">$20,500</span>
-            <span class="pkg-price-now">$18,500</span>
-            <span class="pkg-price-tag">After finance incentive</span>
-            <p class="pkg-price-note">Fully installed <strong>including 25&nbsp;kWh storage or a Tesla Powerwall&nbsp;3</strong>. Estimated saving $4,000&ndash;$5,000 a year.</p>
-          </div>
+        <div class="pkg-price">
+          <a class="pkg-price-quote" href="contact.html?system=13.28kW">Request a quote</a>
+          <p class="pkg-price-note">Fully installed <strong>including a 36&nbsp;kWh SigEnergy battery</strong>. Estimated saving up to ~$5,700 a year, depending on your bill.</p>
+        </div>
         <ul class="ticks">
-          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pairs with Tesla Powerwall 3</li>
           <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Covers EV charging at home</li>
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Tesla Powerwall 3 available instead</li>
         </ul>
         <div class="card-foot"><a class="btn btn--outline btn--block" href="packages.html#p1328">View details</a></div>
       </article>
     </div>
-
     <p class="eyebrow" style="margin-bottom:var(--sp-5)">Commercial</p>
     <div class="grid grid-3">
 
-      <article class="pkg reveal">
-        <div>
-          <div class="pkg-size">20<span>kW</span></div>
-          <p class="pkg-for">Small business &amp; warehouse</p>
-        </div>
-        <p class="pkg-desc">Offset daytime load where it costs most — during business hours, when your tariff is highest.</p>
-        <div class="spec">
-          <div class="spec-row"><span class="spec-k">Panel output</span><span class="spec-v">20,335 W</span></div>
-          <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">1 × 20kW Solis</span></div>
-          <div class="spec-row"><span class="spec-k">Mounting</span><span class="spec-v">Tin / tile / Klip-Lok</span></div>
-        </div>
-        <div class="card-foot"><a class="btn btn--outline btn--block" href="packages.html#p20">View details</a></div>
-      </article>
 
-      <article class="pkg reveal">
+      <article class="pkg-tilt pkg reveal">
         <div>
           <div class="pkg-size">30<span>kW</span></div>
           <p class="pkg-for">Mid-size commercial</p>
@@ -390,7 +399,7 @@ document.documentElement.classList.add("js");})();
         <div class="card-foot"><a class="btn btn--outline btn--block" href="packages.html#p30">View details</a></div>
       </article>
 
-      <article class="pkg reveal">
+      <article class="pkg-tilt pkg reveal">
         <div>
           <div class="pkg-size">50<span>kW</span></div>
           <p class="pkg-for">Large commercial &amp; industrial</p>
@@ -403,86 +412,51 @@ document.documentElement.classList.add("js");})();
         </div>
         <div class="card-foot"><a class="btn btn--outline btn--block" href="packages.html#p50">View details</a></div>
       </article>
+      <article class="pkg-tilt pkg reveal">
+        <div>
+          <div class="pkg-size">100<span>kW</span></div>
+          <p class="pkg-for">Industrial &amp; large sites</p>
+        </div>
+        <p class="pkg-desc">For warehouses, factories and large sites, designed around your roof and load and commissioned in stages so operations keep running.</p>
+        <div class="spec">
+          <div class="spec-row"><span class="spec-k">Panel output</span><span class="spec-v">100,015 W</span></div>
+          <div class="spec-row"><span class="spec-k">Inverter</span><span class="spec-v">Engineered to site</span></div>
+          <div class="spec-row"><span class="spec-k">Mounting</span><span class="spec-v">Engineered to site</span></div>
+        </div>
+        <div class="card-foot"><a class="btn btn--outline btn--block" href="packages.html#p100">View details</a></div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ============ CALCULATOR ============ -->
-<section class="section" id="calculator">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Savings estimator</p>
-      <h2 class="h-md">What could solar do to your bill?</h2>
-      <p class="lead">
-        Move the sliders to see an estimate for a Sydney roof. It's a model, not a quote —
-        but it's built on real irradiance and tariff figures, and it's a fair place to start.
-      </p>
-    </div>
-
-    <div class="calc" id="calc">
-      <div class="calc-panel">
-        <div class="field">
-          <div class="field-head">
-            <label for="calc-size">System size</label>
-            <span class="field-val" id="out-size">10.45 kW</span>
-          </div>
-          <input type="range" id="calc-size" min="6.6" max="50" step="0.05" value="10.45"
-                 aria-describedby="size-hint">
-          <p class="field-hint" id="size-hint">From a 6.6kW starter system up to a 50kW commercial array.</p>
-        </div>
-
-        <div class="field">
-          <div class="field-head">
-            <label for="calc-bill">Your electricity bill</label>
-            <span class="field-val" id="out-bill">$650</span>
-          </div>
-          <input type="range" id="calc-bill" min="200" max="4000" step="25" value="650"
-                 aria-describedby="bill-hint">
-          <p class="field-hint" id="bill-hint">Per quarter, before solar.</p>
-        </div>
-
-        <div class="field">
-          <div class="field-head">
-            <label id="bat-label">Adding a battery?</label>
-          </div>
-          <div class="seg" role="group" aria-labelledby="bat-label">
-            <button type="button" data-battery="no" aria-pressed="true">Solar only</button>
-            <button type="button" data-battery="yes" aria-pressed="false">Solar + battery</button>
-          </div>
-          <p class="field-hint">A battery lifts how much of your own power you actually use, from about 35% to about 78%.</p>
-        </div>
-      </div>
-
-      <div class="result">
-        <div class="result-main">
-          <p class="result-label">Estimated savings · year one</p>
-          <p class="result-value" id="out-saving">$3,412</p>
-        </div>
-
-        <dl class="result-rows">
-          <div class="result-row"><dt>Power generated</dt><dd id="out-gen">15,638 kWh</dd></div>
-          <div class="result-row"><dt>Bill offset</dt><dd id="out-offset">100%</dd></div>
-          <div class="result-row"><dt>Over 10 years</dt><dd id="out-ten">$34,120</dd></div>
-          <div class="result-row"><dt>CO₂ avoided each year</dt><dd id="out-co2">10.6 t</dd></div>
-        </dl>
-
-        <p class="result-note">
-          <strong>How this is worked out:</strong> 4.1 kWh generated per kW of panels per day (Sydney,
-          CEC zone 3) · 35c/kWh grid import · 5c/kWh feed-in · 0.68 kg CO₂ per kWh of grid power.
-          Your real result depends on roof pitch, orientation, shading, your tariff and when you use power.
-          Call us on <a href="tel:+61415301979" style="color:var(--accent-bright)">0415 301 979</a> for a proper site-specific quote.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ BATTERIES ============ -->
-<section class="section section--alt" id="batteries">
+<section class="section section--alt type-17" id="batteries">
   <div class="container">
     <div class="split">
-      <div class="split-media reveal reveal--left">
-        <img src="assets/img/battery-sungrow.jpg" alt="Two stacked Sungrow battery modules and inverter installed on the side of a Sydney home by Sinvesta Group." width="900" height="675" loading="lazy">
+      <div class="split-media reveal reveal--left ef">
+        <!-- Live-style energy view: a SigenStor install rendered in the Sigenergy app.
+             The SVG overlay animates current along the cables in the image; its viewBox
+             matches the image's pixel size so the paths stay on the cables at any width. -->
+        <div class="ef-frame">
+          <img src="assets/img/battery-flow-3d.png" width="598" height="664" loading="lazy"
+               alt="3D view of a Sinvesta battery install: 12.4 kW from solar, 13.13 kW to the building, the SigenStor battery at 100% and 0.73 kW imported from the grid, at 18 °C.">
+          <svg class="ef-flows" viewBox="0 0 598 664" preserveAspectRatio="none" aria-hidden="true">
+            <path id="ef-a" d="M236,186 V358"/>
+            <path id="ef-b" d="M266,392 L316,420"/>
+            <path id="ef-c" d="M358,431 L406,425"/>
+            <path id="ef-d" d="M412,534 L386,524 L339,516 V450"/>
+            <g class="ef-line"><use href="#ef-a"/><use href="#ef-b"/><use href="#ef-c"/><use href="#ef-d"/></g>
+            <g class="ef-dots">
+              <circle r="4"><animateMotion dur="1.6s" repeatCount="indefinite"><mpath href="#ef-a"/></animateMotion></circle>
+              <circle r="4"><animateMotion dur="1.6s" begin="0.8s" repeatCount="indefinite"><mpath href="#ef-a"/></animateMotion></circle>
+              <circle r="4"><animateMotion dur="1.1s" repeatCount="indefinite"><mpath href="#ef-b"/></animateMotion></circle>
+              <circle r="4"><animateMotion dur="1.1s" repeatCount="indefinite"><mpath href="#ef-c"/></animateMotion></circle>
+              <circle r="4"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#ef-d"/></animateMotion></circle>
+            </g>
+          </svg>
+          <span class="ef-importing">Importing</span>
+        </div>
       </div>
       <div class="flow reveal reveal--right">
         <p class="eyebrow">Battery storage</p>
@@ -516,7 +490,7 @@ document.documentElement.classList.add("js");})();
               <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
             </span>
             <div>
-              <h3>SigEnergy — 24 to 48 kWh</h3>
+              <h3>SigEnergy — 18 to 48 kWh</h3>
               <p>Modular and scalable. Start where your budget is and add capacity as your needs grow.</p>
             </div>
           </div>
@@ -532,7 +506,7 @@ document.documentElement.classList.add("js");})();
         </div>
 
         <div class="btn-row">
-          <a class="btn btn--primary" href="batteries.html">Explore battery options</a>
+          <a class="btn btn--primary" href="rebates.html#estimator">Estimate your battery rebate</a>
         </div>
       </div>
     </div>
@@ -540,7 +514,7 @@ document.documentElement.classList.add("js");})();
 </section>
 
 <!-- ============ EV CHARGING ============ -->
-<section class="section">
+<section class="section type-17" id="ev" style="scroll-margin-top:80px">
   <div class="container">
     <div class="split split--reverse">
       <div class="split-media reveal reveal--right">
@@ -549,11 +523,7 @@ document.documentElement.classList.add("js");})();
       <div class="flow reveal reveal--left">
         <p class="eyebrow">EV charging</p>
         <h2 class="h-md">Charge the car on your own sunshine.</h2>
-        <p class="lead">
-          Charging an EV from the grid can add more to your bill than the rest of the house combined.
-          Charging it from your roof costs close to nothing. We install and commission home chargers,
-          including the Tesla Wall Connector, and handle the switchboard work that goes with it.
-        </p>
+        <p class="lead lead--compact">Charge from your roof for close to nothing. We fit the charger and the switchboard work.</p>
         <ul class="ticks reveal">
           <li class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Tesla Wall Connector supply &amp; install</li>
           <li class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Switchboard and circuit upgrades</li>
@@ -561,7 +531,7 @@ document.documentElement.classList.add("js");})();
           <li class="tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Licensed electrical work, certificate supplied</li>
         </ul>
         <div class="btn-row">
-          <a class="btn btn--outline" href="batteries.html#ev">EV charging details</a>
+          <a class="btn btn--outline" href="contact.html?system=EV%20charger">Ask about EV charging</a>
         </div>
       </div>
     </div>
@@ -569,7 +539,7 @@ document.documentElement.classList.add("js");})();
 </section>
 
 <!-- ============ MONITORING ============ -->
-<section class="section section--alt">
+<section class="section section--alt type-17">
   <div class="container">
     <div class="split">
       <div>
@@ -758,22 +728,23 @@ document.documentElement.classList.add("js");})();
       <div>
         <h4>Packages</h4>
         <div class="footer-links">
-          <a href="packages.html#p66">6.6kW system</a>
-          <a href="packages.html#p1045">10.45kW system</a>
-          <a href="packages.html#p1328">13.28kW system</a>
-          <a href="packages.html#p20">20kW commercial</a>
+          <a href="packages.html#p66">6.6kW + 18kWh battery</a>
+          <a href="packages.html#p1045">10.45kW + 27kWh battery</a>
+          <a href="packages.html#p1328">13.28kW + 36kWh battery</a>
           <a href="packages.html#p30">30kW commercial</a>
           <a href="packages.html#p50">50kW commercial</a>
+          <a href="packages.html#p100">100kW commercial</a>
         </div>
       </div>
 
       <div>
         <h4>Solutions</h4>
         <div class="footer-links">
-          <a href="batteries.html">Battery storage</a>
-          <a href="batteries.html#offgrid">Off-grid systems</a>
-          <a href="batteries.html#ev">EV charging</a>
-          <a href="index.html#calculator">Savings estimator</a>
+          <a href="index.html#batteries">Battery storage</a>
+          <a href="contact.html?system=Off-grid">Off-grid systems</a>
+          <a href="index.html#ev">EV charging</a>
+          <a href="rebates.html#estimator">Rebate estimator</a>
+          <a href="packages.html#calculator">Savings estimator</a>
           <a href="projects.html">Projects</a>
         </div>
       </div>
