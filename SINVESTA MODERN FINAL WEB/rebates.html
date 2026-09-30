@@ -3,11 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Solar &amp; Battery Rebate Estimator | Sinvesta Group Sydney</title>
-<meta name="description" content="Estimate your Australian Government solar and battery rebates: STCs, the Cheaper Home Batteries Program and state incentives for NSW, VIC, QLD, SA, WA, TAS, ACT and NT. Updated September 2026.">
+<title>Solar &amp; Battery Rebates and Finance | Sinvesta Group Sydney</title>
+<meta name="description" content="Estimate your Australian Government solar and battery rebates: STCs, the Cheaper Home Batteries Program and state incentives for NSW, VIC, QLD, SA, WA, TAS, ACT and NT, plus the NSW commercial battery incentive and business finance options. Updated September 2026.">
 <meta name="theme-color" content="#0B5FA5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#070C14" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="assets/img/logo.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="assets/fonts/DMSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
@@ -38,7 +41,7 @@ document.documentElement.classList.add("js");})();
     <nav class="nav-links" aria-label="Primary">
       <a class="nav-link" href="index.html">Home</a>
       <a class="nav-link" href="packages.html">Solar Packages</a>
-      <a class="nav-link" href="rebates.html" aria-current="page">Rebates</a>
+      <a class="nav-link" href="rebates.html" aria-current="page">Rebates &amp; Finance</a>
       <a class="nav-link" href="projects.html">Projects</a>
       <a class="nav-link" href="about.html">About</a>
       <a class="nav-link" href="contact.html">Contact</a>
@@ -68,7 +71,7 @@ document.documentElement.classList.add("js");})();
     <nav aria-label="Mobile">
       <a class="drawer-link" href="index.html">Home</a>
       <a class="drawer-link" href="packages.html">Solar Packages</a>
-      <a class="drawer-link" href="rebates.html" aria-current="page">Rebates</a>
+      <a class="drawer-link" href="rebates.html" aria-current="page">Rebates &amp; Finance</a>
       <a class="drawer-link" href="projects.html">Projects</a>
       <a class="drawer-link" href="about.html">About</a>
       <a class="drawer-link" href="contact.html">Contact</a>
@@ -84,18 +87,20 @@ document.documentElement.classList.add("js");})();
 
 <section class="page-head page-head--photo rb-hero">
   <div class="page-head-bg">
-    <img src="assets/img/hero-sunset.jpg" alt="Solar panels on a Sydney roof at sunset." loading="eager" fetchpriority="high">
+    <img data-cms-src="rebates.hero.image" src="assets/img/hero-sunset.jpg" alt="Solar panels on a Sydney roof at sunset." loading="eager" fetchpriority="high">
   </div>
   <div class="container">
     <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>Rebates &amp; incentives</span>
+      <a href="index.html">Home</a> <span aria-hidden="true">/</span> <span>Rebates &amp; finance</span>
     </nav>
     <div class="section-head" style="margin-bottom:0">
-      <p class="eyebrow">Australian Government rebates · updated September 2026</p>
-      <h1 class="h-lg">The government pays part of your system. <em class="hl">See&nbsp;how&nbsp;much.</em></h1>
+      <p class="eyebrow">Rebates &amp; finance · updated September 2026</p>
+      <h1 data-cms="rebates.hero.title" class="h-lg">The government pays part of your system. <em class="hl">See&nbsp;how&nbsp;much.</em></h1>
       <div class="btn-row">
         <a class="btn btn--gold btn--lg" href="#estimator">Estimate my rebate</a>
         <a class="btn btn--outline btn--lg" href="#how-it-works" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.35)">How rebates work</a>
+        <a class="btn btn--outline btn--lg" href="#finance" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.35)">Business finance</a>
+        <a class="btn btn--outline btn--lg" href="#finance-partners" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.35)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--accent-bright)"><path d="M20 6 9 17l-5-5"/></svg>Finance available</a>
       </div>
     </div>
 
@@ -144,9 +149,9 @@ document.documentElement.classList.add("js");})();
         <div class="field">
           <div class="field-head"><label id="rb-preset-label">Start from a package</label></div>
           <div class="rb-presets" role="group" aria-labelledby="rb-preset-label">
-            <button type="button" data-rb-preset="6.65,18" aria-pressed="false"><strong>6.6 kW</strong><span>+ 18 kWh</span></button>
-            <button type="button" data-rb-preset="10.45,27" aria-pressed="true"><strong>10.45 kW</strong><span>+ 27 kWh</span></button>
-            <button type="button" data-rb-preset="13.3,36" aria-pressed="false"><strong>13.28 kW</strong><span>+ 36 kWh</span></button>
+            <button type="button" data-rb-preset="6.63,13.5" aria-pressed="false"><strong>6.6 kW</strong><span>+ 13.5 kWh</span></button>
+            <button type="button" data-rb-preset="10.2,27" aria-pressed="true"><strong>10 kW</strong><span>+ 27 kWh</span></button>
+            <button type="button" data-rb-preset="13.26,36" aria-pressed="false"><strong>13 kW</strong><span>+ 36 kWh</span></button>
             <button type="button" data-rb-preset="custom" aria-pressed="false"><strong>Custom</strong><span>set below</span></button>
           </div>
         </div>
@@ -154,9 +159,9 @@ document.documentElement.classList.add("js");})();
         <div class="field">
           <div class="field-head">
             <label for="rb-kw">Solar system size</label>
-            <span class="field-val" id="rb-kw-out">10.45 kW</span>
+            <span class="field-val" id="rb-kw-out">10 kW</span>
           </div>
-          <input type="range" id="rb-kw" min="3" max="100" step="0.05" value="10.45" aria-describedby="rb-kw-hint">
+          <input type="range" id="rb-kw" min="3" max="100" step="0.01" value="10.2" aria-describedby="rb-kw-hint">
           <p class="field-hint" id="rb-kw-hint">Small-scale certificates cover systems up to 100&nbsp;kW, homes and businesses alike.</p>
         </div>
 
@@ -165,7 +170,7 @@ document.documentElement.classList.add("js");})();
             <label for="rb-kwh">Battery capacity (usable)</label>
             <span class="field-val" id="rb-kwh-out">27 kWh</span>
           </div>
-          <input type="range" id="rb-kwh" min="5" max="50" step="1" value="27" aria-describedby="rb-kwh-hint">
+          <input type="range" id="rb-kwh" min="5" max="50" step="0.5" value="27" aria-describedby="rb-kwh-hint">
           <div class="rb-tiers" aria-hidden="true">
             <div class="rb-tier" style="flex:14"><span class="rb-tier-fill" data-rb-tier="0"></span><em>100%</em></div>
             <div class="rb-tier" style="flex:14"><span class="rb-tier-fill" data-rb-tier="1"></span><em>60%</em></div>
@@ -277,10 +282,11 @@ document.documentElement.classList.add("js");})();
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">Policy overview</p>
-      <h2 class="h-md"><em class="hl">Three layers of support,</em> and who pays each one.</h2>
+      <h2 class="h-md"><em class="hl">Four layers of support,</em> and who pays each one.</h2>
+      <p class="muted">Three for homes, and a fourth that opened to NSW businesses in September 2026.</p>
     </div>
 
-    <div class="grid grid-3 rb-policy">
+    <div class="grid rb-policy rb-policy--4">
       <article class="pkg reveal">
         <span class="badge">Federal · solar</span>
         <h3 class="h-sm">Small-scale Renewable Energy Scheme</h3>
@@ -290,7 +296,8 @@ document.documentElement.classList.add("js");})();
         </p>
         <div class="rb-formula">kW × zone rating × years left × STC price</div>
         <ul class="ticks">
-          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Available Australia-wide, for systems up to 100&nbsp;kW</li>
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Available Australia-wide, for systems up to 100&nbsp;kW today</li>
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Expected to cover business systems up to 1&nbsp;MW from 1&nbsp;October&nbsp;2026, once the regulations are made</li>
           <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Worth a little less every January until 2030</li>
           <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Needs an accredited installer and approved equipment</li>
         </ul>
@@ -329,12 +336,231 @@ document.documentElement.classList.add("js");})();
           </tbody>
         </table>
       </article>
+
+      <article class="pkg rb-policy-biz reveal">
+        <div class="rb-policy-tags"><span class="badge rb-badge-biz">NSW · business batteries</span><span class="rb-new">New · 7 Sep 2026</span></div>
+        <h3 class="h-sm">Peak Demand Reduction Scheme</h3>
+        <p class="pkg-desc">
+          NSW now pays businesses to install commercial-scale batteries that ease the grid at peak times.
+          The incentive is paid in Peak Reduction Certificates (PRCs), and at current prices it is often
+          worth 20% to 50% of a fully installed battery.
+        </p>
+        <div class="rb-formula">peak kW shifted × 900 × network factor × PRC price</div>
+        <table class="rb-states">
+          <caption class="sr-only">NSW commercial battery activities</caption>
+          <tbody>
+            <tr><th scope="row">BESS4</th><td>Small and medium business sites, over 20&nbsp;kWh up to 200&nbsp;kWh usable</td></tr>
+            <tr><th scope="row">BESS5</th><td>Commercial, industrial and community sites, over 200&nbsp;kWh up to 30&nbsp;MWh</td></tr>
+            <tr><th scope="row">Stacking</th><td>BESS4 also stacks with the federal battery discount on systems up to 100&nbsp;kWh</td></tr>
+          </tbody>
+        </table>
+        <ul class="ticks">
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Battery-only projects qualify; adding new solar earns a higher rate</li>
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Not for homes or data centres, and one claim per site</li>
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>CEC-listed gear and an SAA-accredited installer (BESS4); UL9540A-tested battery (BESS5)</li>
+        </ul>
+      </article>
     </div>
   </div>
 </section>
 
+<!-- ============ BUSINESS FINANCE ============ -->
+<section class="section" id="finance" style="scroll-margin-top:80px">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Commercial finance</p>
+      <h2 class="h-md">Solar that pays its way <em class="hl">from the first bill.</em></h2>
+      <p class="muted">
+        For most businesses the question isn't whether solar saves money, it's how to fund it without
+        tying up working capital. We model your site, take every incentive off, then show you the same
+        system under each way of paying for it.
+      </p>
+    </div>
+
+    <!-- the incentive stack -->
+    <div class="fin-stack">
+      <article class="fin-stack-item reveal">
+        <span class="fin-stack-k">Federal · solar 100&nbsp;kW to 1&nbsp;MW</span>
+        <span class="fin-stack-v">~20%</span>
+        <p>off a mid-sized business system through upfront STCs, expected from 1&nbsp;Oct&nbsp;2026 once the regulations are made. Until now the upfront discount stopped at 100&nbsp;kW.</p>
+      </article>
+      <article class="fin-stack-item reveal">
+        <span class="fin-stack-k">NSW · business batteries</span>
+        <span class="fin-stack-v">20–50%</span>
+        <p>off an installed battery through Peak Reduction Certificates, for installs from 7&nbsp;Sep&nbsp;2026. Battery-only projects qualify; new solar alongside earns more.</p>
+      </article>
+      <article class="fin-stack-item reveal">
+        <span class="fin-stack-k">Federal · batteries to 100&nbsp;kWh</span>
+        <span class="fin-stack-v">Stacks</span>
+        <p>The Cheaper Home Batteries discount also covers small businesses, and it stacks with the NSW incentive on eligible systems up to 100&nbsp;kWh.</p>
+      </article>
+    </div>
+
+    <!-- four ways to pay -->
+    <h3 class="h-sm fin-sub">Four ways to pay for it</h3>
+    <div class="grid grid-2 fin-options">
+      <article class="pkg fin-opt reveal">
+        <span class="fin-opt-n" aria-hidden="true">01</span>
+        <h4 class="fin-opt-t">Outright purchase</h4>
+        <p class="pkg-desc">Pay once and keep every dollar of saving. The lowest total cost over the system's life, and the fastest payback.</p>
+        <ul class="ticks">
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Incentives come straight off the invoice</li>
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>A business asset you can depreciate</li>
+        </ul>
+        <p class="fin-best"><strong>Best for</strong> businesses with spare capital looking for the highest return</p>
+      </article>
+      <article class="pkg fin-opt reveal">
+        <span class="fin-opt-n" aria-hidden="true">02</span>
+        <h4 class="fin-opt-t">Equipment finance</h4>
+        <p class="pkg-desc">A chattel mortgage or equipment loan: you own the system from day one and repay it over a fixed term, usually a few years.</p>
+        <ul class="ticks">
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Often little or nothing upfront</li>
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Repayments can sit below the monthly saving</li>
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Some lenders discount green loans, including CEFC-backed programs</li>
+        </ul>
+        <p class="fin-best"><strong>Best for</strong> keeping cash free while still owning the asset</p>
+      </article>
+      <article class="pkg fin-opt reveal">
+        <span class="fin-opt-n" aria-hidden="true">03</span>
+        <h4 class="fin-opt-t">Rental or operating lease</h4>
+        <p class="pkg-desc">A fixed monthly payment for the use of the system, with the option to own it at the end of the term.</p>
+        <ul class="ticks">
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No capital outlay</li>
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Payments treated as a running cost</li>
+        </ul>
+        <p class="fin-best"><strong>Best for</strong> businesses that prefer a predictable operating expense</p>
+      </article>
+      <article class="pkg fin-opt reveal">
+        <span class="fin-opt-n" aria-hidden="true">04</span>
+        <h4 class="fin-opt-t">Power purchase agreement</h4>
+        <p class="pkg-desc">A provider owns, installs and maintains the system on your roof. You buy the power it makes at an agreed rate, below what you pay the grid.</p>
+        <ul class="ticks">
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>$0 upfront, no maintenance</li>
+          <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pay only for the energy you use</li>
+        </ul>
+        <p class="fin-best"><strong>Best for</strong> larger sites on long leases or with steady daytime load</p>
+      </article>
+    </div>
+
+    <!-- side by side -->
+    <div class="table-wrap fin-table">
+      <table class="compare">
+        <caption class="sr-only">Commercial solar finance options compared</caption>
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Purchase</th>
+            <th scope="col">Equipment finance</th>
+            <th scope="col">Rental / lease</th>
+            <th scope="col">PPA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row" class="metric">Upfront cost</th><td>Full price, less incentives</td><td>Little or none</td><td>None</td><td>None</td></tr>
+          <tr><th scope="row" class="metric">Who owns it</th><td>You</td><td>You, from day one</td><td>Financier, option to buy</td><td>Provider</td></tr>
+          <tr><th scope="row" class="metric">Incentives</th><td>Off your invoice</td><td>Off the amount financed</td><td>Built into the payment</td><td>Built into the rate</td></tr>
+          <tr><th scope="row" class="metric">Maintenance</th><td>You</td><td>You</td><td>Often included</td><td>Provider</td></tr>
+          <tr><th scope="row" class="metric">Tax treatment*</th><td>Depreciation</td><td>Depreciation and interest</td><td>Payments as expense</td><td>Energy bill as expense</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- worked numbers + how we build the case -->
+    <div class="split fin-case">
+      <div class="pkg fin-example reveal">
+        <p class="eyebrow">NSW battery incentive · worked examples</p>
+        <table class="rb-states fin-example-t">
+          <caption class="sr-only">Indicative NSW Peak Reduction Certificate values</caption>
+          <tbody>
+            <tr><th scope="row">200&nbsp;kWh battery</th><td><span class="fin-num">~$44,100</span>battery only</td></tr>
+            <tr><th scope="row">200&nbsp;kWh + 100&nbsp;kW solar</th><td><span class="fin-num">~$56,160</span>about 26% off a ~$220,000 project</td></tr>
+            <tr><th scope="row">5&nbsp;MWh battery</th><td><span class="fin-num">~$940,680</span>about 36% off a ~$2.6m project</td></tr>
+          </tbody>
+        </table>
+        <p class="faint fin-foot">Certificate values are NSW Government modelling at a $3.00 certificate price, GST inclusive; project costs are indicative industry figures. Certificate prices move with the market, so your figure is confirmed in the quote.</p>
+      </div>
+      <div class="flow">
+        <h3 class="h-sm">How we build your business case</h3>
+        <ol class="fin-steps">
+          <li><strong>Send us 12 months of bills</strong> or your interval data, and we'll look at when you use power, not just how much.</li>
+          <li><strong>We size the solar and battery</strong> around your daytime load and your demand peaks.</li>
+          <li><strong>Every incentive is calculated</strong>: STCs, PRCs and the federal battery discount where they stack.</li>
+          <li><strong>You see each finance option side by side</strong>, month by month, before you commit to anything.</li>
+        </ol>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="contact.html?system=Commercial%20finance">Request a business case</a>
+          <a class="btn btn--ghost" href="packages.html#p50">See commercial packages</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="faint fin-disclaimer">
+      *General information only, not financial or tax advice. Sinvesta Group is not a lender: finance is
+      provided by third-party lenders, subject to their approval and terms. Tax treatment depends on your
+      business, so check it with your accountant. The expanded federal solar rebate is expected from
+      1&nbsp;October&nbsp;2026, subject to the regulations being in place.
+    </p>
+  </div>
+</section>
+
+<!-- ============ FINANCE PARTNERS ============ -->
+<section class="section fp" id="finance-partners" style="scroll-margin-top:80px">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <p class="eyebrow eyebrow--center">Finance partners</p>
+      <h2 class="h-md">Flexible commercial &amp; residential <em class="hl">finance options.</em></h2>
+      <p class="lead">We work with three finance partners, so homes and businesses can spread the cost of solar and storage over time.</p>
+    </div>
+    <div class="fp-grid">
+      <article class="fp-card reveal" id="brighte" tabindex="-1" data-fp-card>
+        <div class="fp-top">
+          <span class="fp-logo"><img src="assets/img/partners/brighte.png" width="62" height="16" alt="Brighte logo" loading="lazy"></span>
+          <span class="fp-tag">Homes</span>
+        </div>
+        <h3 class="fp-name">Brighte</h3>
+        <p class="fp-focus">Flexible payment plans for home solar and battery systems, including interest-free options on eligible purchases.</p>
+        <ul class="ticks fp-ticks">
+            <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Spread the cost in regular repayments</li>
+            <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Interest-free plans on eligible systems</li>
+            <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Apply online with a quick decision</li>
+        </ul>
+        <a class="btn btn--outline btn--block fp-cta" href="contact.html?note=I%27d%20like%20to%20ask%20about%20Brighte%20finance.#quote-form">Ask about Brighte finance <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="fp-card reveal" id="plenti" tabindex="-1" data-fp-card>
+        <div class="fp-top">
+          <span class="fp-logo"><img src="assets/img/partners/plenti.png" width="51" height="16" alt="Plenti logo" loading="lazy"></span>
+          <span class="fp-tag">Homes &amp; business</span>
+        </div>
+        <h3 class="fp-name">Plenti</h3>
+        <p class="fp-focus">Competitive green loans with fast approvals for residential and commercial clean-energy upgrades.</p>
+        <ul class="ticks fp-ticks">
+            <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Green loan rates for clean-energy upgrades</li>
+            <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Fast online approvals</li>
+            <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Fixed repayments you can plan around</li>
+        </ul>
+        <a class="btn btn--outline btn--block fp-cta" href="contact.html?note=I%27d%20like%20to%20ask%20about%20Plenti%20finance.#quote-form">Ask about Plenti finance <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <article class="fp-card reveal" id="smartease" tabindex="-1" data-fp-card>
+        <div class="fp-top">
+          <span class="fp-logo"><img src="assets/img/partners/smart-ease.png" width="100" height="16" alt="SmartEase logo" loading="lazy"></span>
+          <span class="fp-tag">Business</span>
+        </div>
+        <h3 class="fp-name">SmartEase</h3>
+        <p class="fp-focus">Commercial equipment leasing and payment solutions tailored to business solar and energy storage.</p>
+        <ul class="ticks fp-ticks">
+            <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Leasing built for business solar and storage</li>
+            <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Keeps working capital free</li>
+            <li class="tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Repayments matched to your savings</li>
+        </ul>
+        <a class="btn btn--outline btn--block fp-cta" href="contact.html?note=I%27d%20like%20to%20ask%20about%20SmartEase%20finance.#quote-form">Ask about SmartEase finance <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+    </div>
+    <p class="faint fp-disclaimer">Finance is provided by our partners, subject to their eligibility criteria, approval and terms. Rates, fees and interest-free periods vary by product; read the lender&rsquo;s terms before you apply. Sinvesta Group is not a lender.</p>
+  </div>
+</section>
+
 <!-- ============ TIMING ============ -->
-<section class="section">
+<section class="section section--alt">
   <div class="container">
     <div class="split rb-timing">
       <div class="flow">
@@ -355,7 +581,7 @@ document.documentElement.classList.add("js");})();
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="section section--alt">
+<section class="section">
   <div class="container">
     <div class="section-head section-head--center">
       <p class="eyebrow eyebrow--center">Questions</p>
@@ -389,7 +615,13 @@ document.documentElement.classList.add("js");})();
       <details>
         <summary>Do businesses get these rebates?</summary>
         <div class="faq-body">
-          <p>Yes. Solar systems up to 100&nbsp;kW earn STCs whoever owns them, and the battery program covers small businesses. Systems over 100&nbsp;kW earn large-scale certificates each year instead of an upfront discount, and we'll model that separately.</p>
+          <p>Yes. Solar systems up to 100&nbsp;kW earn STCs whoever owns them, and the federal battery program covers small businesses. From 1&nbsp;October&nbsp;2026 the upfront STC discount is expected to extend to systems up to 1&nbsp;MW, once the regulations are in place; larger systems earn large-scale certificates each year instead. In NSW, business batteries over 20&nbsp;kWh can also earn Peak Reduction Certificates. See <a href="#finance">business finance</a> for how it all adds up.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Can my business go solar with no upfront cost?</summary>
+        <div class="faq-body">
+          <p>Yes. Equipment finance, a rental or a power purchase agreement can all start with nothing down, and a well-sized system often saves more each month than the repayment. We compare the options side by side in your business case. Finance is provided by third-party lenders and subject to their approval.</p>
         </div>
       </details>
     </div>
@@ -435,12 +667,12 @@ document.documentElement.classList.add("js");})();
       <div>
         <h4>Packages</h4>
         <div class="footer-links">
-          <a href="packages.html#p66">6.6kW + 18kWh battery</a>
-          <a href="packages.html#p1045">10.45kW + 27kWh battery</a>
-          <a href="packages.html#p1328">13.28kW + 36kWh battery</a>
-          <a href="packages.html#p30">30kW commercial</a>
+          <a href="packages.html#p66">6.6kW + 13.5kWh battery</a>
+          <a href="packages.html#p1045">10kW + 27kWh battery</a>
+          <a href="packages.html#p1328">13kW + 36kWh battery</a>
           <a href="packages.html#p50">50kW commercial</a>
           <a href="packages.html#p100">100kW commercial</a>
+          <a href="packages.html#p200">200kW+ custom industrial</a>
         </div>
       </div>
       <div>
@@ -452,6 +684,7 @@ document.documentElement.classList.add("js");})();
           <a href="contact.html?system=Off-grid">Off-grid systems</a>
           <a href="index.html#ev">EV charging</a>
           <a href="rebates.html#estimator">Rebate estimator</a>
+          <a href="rebates.html#finance">Business finance</a>
         </div>
       </div>
       <div>

@@ -188,19 +188,20 @@
   if (se) {
     var M = {
       rate: 0.33, fit: 0.05, offset: 0.87, yieldKwDay: 4.1, selfUse: 0.83,
-      batPerDailyGen: 0.558, moduleKwh: 9, panelW: 475, m2PerPanel: 2.14,
-      minPanels: 14, maxPanels: 211,   // 6.6 kW starter up to the 100 kW commercial tier
+      batPerDailyGen: 0.558, moduleKwh: 9, panelW: 510, m2PerPanel: 2.14,
+      minPanels: 13, maxPanels: 197,   // 6.6 kW starter up to the 100 kW commercial tier
       co2: 0.68,
       // Recommended system by quarterly bill. Bills under $600 use the entry tier
-      // (the brief left $400–$599 unassigned). Battery = modules × 9 kWh.
+      // (the brief left $400–$599 unassigned). Battery = modules × 9 kWh Sigenergy,
+      // except the 6.6kW package, which comes with one 13.5 kWh Tesla Powerwall 3.
       tiers: [
-        { upTo: 599.99,   label: "6.6", panels: 14, modules: 2, note: "Matches entry-level residential energy needs." },
-        { upTo: 800,      label: "10",  panels: 21, modules: 3, note: "Ideal mid-size balance for typical family home usage." },
-        { upTo: 1000,     label: "13",  panels: 28, modules: 4, note: "High-capacity setup for heavy energy consumers." },
-        { upTo: 1500,     label: "15",  panels: 32, modules: 5, note: "Premium large-scale residential or light commercial setup." },
+        { upTo: 599.99,   label: "6.6", panels: 13, modules: 0, kwh: 13.5, bat: "1 × 13.5 kWh Tesla Powerwall 3", note: "Matches entry-level residential energy needs." },
+        { upTo: 800,      label: "10",  panels: 20, modules: 3, note: "Ideal mid-size balance for typical family home usage." },
+        { upTo: 1000,     label: "13",  panels: 26, modules: 4, note: "High-capacity setup for heavy energy consumers." },
+        { upTo: 1500,     label: "15",  panels: 29, modules: 5, note: "Premium large-scale residential or light commercial setup." },
         // Over $1,500 a quarter: no standard package; the card asks them to talk to us.
         // panels/modules only keep the chart's model running; nothing sized is shown.
-        { upTo: Infinity, custom: true, panels: 32, modules: 5 }
+        { upTo: Infinity, custom: true, panels: 29, modules: 5 }
       ],
       afterMaxFactor: 0.10,            // chart: after-solar line is 0–10% of before
       barFactor: [0.80, 0.92],         // chart: solar bars are 80–92% of before
@@ -216,9 +217,10 @@
     M.genShape = norm(M.genShape);
     M.useShape = norm(M.useShape);
     var PACKAGES = [
-      { kw: 6.65, label: "6.6kW + 18kWh", id: "p66" }, { kw: 10.45, label: "10.45kW + 27kWh", id: "p1045" },
-      { kw: 13.3, label: "13.28kW + 36kWh", id: "p1328" }, { kw: 30, label: "30kW commercial", id: "p30" },
-      { kw: 50, label: "50kW commercial", id: "p50" }, { kw: 100, label: "100kW commercial", id: "p100" }
+      { kw: 6.63, label: "6.6kW + 13.5kWh", id: "p66" }, { kw: 10.2, label: "10kW + 27kWh", id: "p1045" },
+      { kw: 13.26, label: "13kW + 36kWh", id: "p1328" },
+      { kw: 50, label: "50kW commercial", id: "p50" }, { kw: 100, label: "100kW commercial", id: "p100" },
+      { kw: 200, label: "200kW+ custom industrial", id: "p200" }
     ];
 
     var seState = { billQ: 1450, period: "quarter", storey: "single" };
@@ -263,7 +265,7 @@
         return u * (M.barFactor[0] + (M.barFactor[1] - M.barFactor[0]) * t);
       });
       var saving = Math.min(y.self * M.rate + y.exp * M.fit, seState.billQ * 4);
-      return { kw: kw, panels: panels, modules: modules, kwh: modules * M.moduleKwh, tier: tier,
+      return { kw: kw, panels: panels, modules: modules, kwh: tier.kwh || modules * M.moduleKwh, tier: tier,
                gen: gen, bars: bars, use: use, grid: grid, y: y, saving: saving };
     }
 
@@ -307,9 +309,9 @@
       if (r.tier.custom) return;
       byId("se-kw").textContent = r.tier.label;
       byId("se-kwh").textContent = r.kwh;
-      // Module count is always capacity ÷ 9 kWh
-      byId("se-rec-detail").textContent = r.panels + " × " + M.panelW + "W Jinko panels · " + (r.kwh / M.moduleKwh) +
-        " × " + M.moduleKwh + " kWh Sigenergy module" + (r.modules > 1 ? "s" : "");
+      // Sigenergy module count is capacity ÷ 9 kWh; a tier can name its own battery instead
+      byId("se-rec-detail").textContent = r.panels + " × " + M.panelW + "W panels · " + (r.tier.bat ||
+        (r.kwh / M.moduleKwh) + " × " + M.moduleKwh + " kWh Sigenergy module" + (r.modules > 1 ? "s" : ""));
       byId("se-rec-note").textContent = r.tier.note;
       var pkg = closestPackage(r.kw);
       var link = byId("se-rec-link");
@@ -500,11 +502,25 @@
   }
 
   /* ---------- 8. QUOTE FORM ---------- */
+
+  // Posts an enquiry to the admin CMS, which saves it and emails it through.
+  // Resolves false when that isn't possible (opened from disk, local preview,
+  // offline), so the caller can fall back to opening the visitor's email app.
+  function sendEnquiry(payload) {
+    if (!window.fetch || location.protocol === "file:") return Promise.resolve(false);
+    payload.page = location.pathname;
+    return fetch("/admin/api/public/inquiries", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }).then(function (res) { return res.ok; }, function () { return false; });
+  }
+
   var form = document.getElementById("quote-form");
   if (form) {
     var status = document.getElementById("form-status");
 
-    // Product pages link here as contact.html?system=13.28kW — preselect that option
+    // Product pages link here as contact.html?system=13kW — preselect that option
     // so the visitor doesn't have to find it again in the dropdown.
     (function prefillSystem() {
       var wanted = new URLSearchParams(window.location.search).get("system");
@@ -551,9 +567,37 @@
 
       if (!ok) return;
 
-      // No backend is wired up yet — hand the enquiry to the user's mail client
-      // so the form is genuinely usable on a static host.
       var data = new FormData(form);
+      var submitBtn = form.querySelector('[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+
+      sendEnquiry({
+        name: data.get("name") || "",
+        phone: data.get("phone") || "",
+        email: data.get("email") || "",
+        suburb: data.get("suburb") || "",
+        property: data.get("property") || "",
+        system: data.get("system") || "",
+        bill: data.get("bill") || "",
+        message: data.get("message") || "",
+        source: "contact-form"
+      }).then(function (sent) {
+        if (submitBtn) submitBtn.disabled = false;
+        if (sent) {
+          status.textContent = "Thanks, your enquiry has been sent. We'll be in touch soon. For anything urgent, call 0415 301 979.";
+          status.classList.add("is-visible");
+          status.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+          form.reset();
+          document.querySelectorAll('input[type="range"]').forEach(paintRange);
+          return;
+        }
+        openMailFallback(data);
+      });
+    });
+
+    // Without the CMS (local preview, admin unreachable) hand the enquiry to
+    // the visitor's mail client so the form still works on a static host.
+    function openMailFallback(data) {
       var body = [
         "Name: " + (data.get("name") || ""),
         "Phone: " + (data.get("phone") || ""),
@@ -577,7 +621,7 @@
 
       form.reset();
       document.querySelectorAll('input[type="range"]').forEach(paintRange);
-    });
+    }
 
     // Clear the error as soon as the user starts fixing the field.
     form.querySelectorAll("[required]").forEach(function (field) {
@@ -784,7 +828,7 @@
   // Hero ticker and countdown (the static HTML carries the same figures as a fallback)
   var tickSolar = document.querySelector('[data-rb-ticker="solar"]');
   if (tickSolar) {
-    tickSolar.textContent = "~" + money0.format(solarStcs(6.65, 3, REBATE.installYear) * REBATE.stcPrice);
+    tickSolar.textContent = "~" + money0.format(solarStcs(6.63, 3, REBATE.installYear) * REBATE.stcPrice);
     document.querySelector('[data-rb-ticker="battery"]').textContent =
       "~" + money0.format(REBATE.battery.factor * REBATE.stcPrice) + "/kWh";
     var countdown = document.querySelector("[data-rb-countdown]");
@@ -798,7 +842,7 @@
   var rb = document.getElementById("rebate-calc");
   if (rb) {
     var $ = function (id) { return document.getElementById(id); };
-    var st = { type: "battery", kw: 10.45, kwh: 27, preset: "10.45,27", state: "NSW",
+    var st = { type: "battery", kw: 10.2, kwh: 27, preset: "10.2,27", state: "NSW",
                zone: 3, vpp: true, waNet: "synergy", customPrice: null };
 
     var kwEl = $("rb-kw"), kwhEl = $("rb-kwh"), stateEl = $("rb-state"), zoneEl = $("rb-zone");
@@ -816,7 +860,8 @@
       var p = st.kw * REBATE.typical.perKw + (st.type === "battery" ? st.kwh * REBATE.typical.perKwh : 0);
       return Math.round(p / 100) * 100;
     }
-    function sizeLabel(kw) { return kw === 13.3 ? "13.28" : kw === 6.65 ? "6.6" : String(+kw.toFixed(2)); }
+    // Package arrays show under their package names (13 × 510W = 6.63 kW is "6.6")
+    function sizeLabel(kw) { return { 6.63: "6.6", 10.2: "10", 13.26: "13" }[kw] || String(+kw.toFixed(2)); }
 
     function render() {
       var hasBat = st.type === "battery";
@@ -927,7 +972,7 @@
         press(presetBtns, btn);
         if (st.preset !== "custom") {
           var v = st.preset.split(",");
-          st.kw = parseFloat(v[0]); st.kwh = parseInt(v[1], 10);
+          st.kw = parseFloat(v[0]); st.kwh = parseFloat(v[1]);
           setRange(kwEl, st.kw); setRange(kwhEl, st.kwh);
         } else {
           kwEl.focus();
@@ -941,7 +986,7 @@
       press(presetBtns, rb.querySelector('[data-rb-preset="custom"]'));
     }
     kwEl.addEventListener("input", function () { st.kw = parseFloat(kwEl.value); toCustom(); render(); });
-    kwhEl.addEventListener("input", function () { st.kwh = parseInt(kwhEl.value, 10); toCustom(); render(); });
+    kwhEl.addEventListener("input", function () { st.kwh = parseFloat(kwhEl.value); toCustom(); render(); });
     stateEl.addEventListener("change", function () {
       st.state = stateEl.value;
       st.zone = REBATE.states[st.state].zone;
@@ -969,4 +1014,335 @@
 
     render();
   }
+
+  /* ---------- EV CHARGING BAY ----------
+     Runs only while the card is on screen: off screen the SVG timeline and CSS
+     loops are paused and the ticker stops, so scrolling past costs nothing.
+     While visible, the car's pack fills cell by cell and the readings drift. */
+  var evx = document.querySelector("[data-evx]");
+  if (evx) {
+    var evxSvg = evx.querySelector(".evx-scene");
+    var evxStage = evx.querySelector(".evx-stage");
+    var evxCells = evx.querySelectorAll(".evx-cell");
+    var evxSoc = evx.querySelector("[data-evx-soc]");
+    var evxBar = evx.querySelector("[data-evx-bar]");
+    var evxSolar = evx.querySelector("[data-evx-solar]");
+    var soc = 64, hold = 0, evxTimer = null;
+
+    function evxDraw() {
+      var lit = Math.floor(soc / 100 * evxCells.length);
+      evxCells.forEach(function (c, i) {
+        c.classList.toggle("is-lit", i < lit);
+        c.classList.toggle("is-next", i === lit);
+      });
+      evxSoc.textContent = soc;
+      evxBar.style.width = soc + "%";
+    }
+    function evxTick() {
+      if (soc < 100) soc++;
+      else if (++hold > 2) { soc = 52; hold = 0; }   // full: pause a beat, then loop
+      evxSolar.textContent = (6.6 + Math.random() * 0.7).toFixed(1);
+      evxDraw();
+    }
+    function evxRun(on) {
+      evx.classList.toggle("is-paused", !on);
+      if (evxSvg.pauseAnimations) on ? evxSvg.unpauseAnimations() : evxSvg.pauseAnimations();
+      if (on && !evxTimer) evxTimer = setInterval(evxTick, 1600);
+      if (!on && evxTimer) { clearInterval(evxTimer); evxTimer = null; }
+    }
+    evxDraw();
+
+    if (reduceMotion) {
+      if (evxSvg.pauseAnimations) evxSvg.pauseAnimations();
+    } else {
+      if ("IntersectionObserver" in window) {
+        evxRun(false);
+        new IntersectionObserver(function (entries) {
+          evxRun(entries[0].isIntersecting);
+        }, { rootMargin: "80px 0px" }).observe(evx);
+      } else evxRun(true);
+
+      /* gentle 3D tilt toward the pointer, batched to one write per frame */
+      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        var tiltFrame = 0, tx = 0, ty = 0;
+        evx.addEventListener("pointermove", function (e) {
+          var r = evx.getBoundingClientRect();
+          tx = (e.clientX - r.left) / r.width - 0.5;
+          ty = (e.clientY - r.top) / r.height - 0.5;
+          if (!tiltFrame) tiltFrame = requestAnimationFrame(function () {
+            tiltFrame = 0;
+            evxStage.style.setProperty("--evx-ry", (tx * 8).toFixed(2) + "deg");
+            evxStage.style.setProperty("--evx-rx", (-ty * 6).toFixed(2) + "deg");
+          });
+        });
+        evx.addEventListener("pointerleave", function () {
+          evxStage.style.setProperty("--evx-ry", "0deg");
+          evxStage.style.setProperty("--evx-rx", "0deg");
+        });
+      }
+    }
+  }
+
+  /* ---------- 13b. GOOGLE REVIEWS CAROUSEL ---------- */
+  (function reviews() {
+    var track = document.querySelector("[data-gr-track]");
+    if (!track) return;
+    var prev = document.querySelector("[data-gr-prev]");
+    var next = document.querySelector("[data-gr-next]");
+    var count = document.querySelector("[data-gr-count]");
+
+    // "Read more" only on cards whose text is actually clamped
+    function checkClamp() {
+      track.querySelectorAll(".gr-card").forEach(function (card) {
+        var text = card.querySelector(".gr-text"), btn = card.querySelector(".gr-more");
+        if (card.classList.contains("is-open")) return;
+        btn.hidden = text.scrollHeight <= text.clientHeight + 2;
+      });
+    }
+    track.addEventListener("click", function (e) {
+      var btn = e.target.closest(".gr-more");
+      if (!btn) return;
+      var card = btn.closest(".gr-card");
+      var open = card.classList.toggle("is-open");
+      btn.textContent = open ? "Show less" : "Read more";
+    });
+
+    function step() {
+      var card = track.querySelector(".gr-card");
+      return card ? card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 16) : 300;
+    }
+    function update() {
+      prev.disabled = track.scrollLeft <= 8;
+      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
+      if (count) {
+        var total = track.querySelectorAll(".gr-card").length, w = step();
+        var first = Math.round(track.scrollLeft / w) + 1;
+        var shown = Math.max(1, Math.round((track.clientWidth + 16) / w));
+        var last = Math.min(total, first + shown - 1);
+        count.textContent = (first === last ? first : first + "–" + last) + " of " + total;
+      }
+    }
+    prev.addEventListener("click", function () { track.scrollBy({ left: -step(), behavior: reduceMotion ? "auto" : "smooth" }); });
+    next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: reduceMotion ? "auto" : "smooth" }); });
+    track.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", function () { checkClamp(); update(); });
+    checkClamp(); update();
+  })();
+
+  /* ---------- 13c. FINANCE PARTNER CARDS (rebates.html) ----------
+     #brighte / #plenti / #smartease in the URL (e.g. from the home page badges)
+     selects that card: gold highlight, smooth scroll and a short glow pulse.
+     Clicking a card selects it too. */
+  (function financePartners() {
+    var cards = document.querySelectorAll("[data-fp-card]");
+    if (!cards.length) return;
+    function select(card, arrived) {
+      cards.forEach(function (c) { c.classList.toggle("is-active", c === card); c.classList.remove("is-arrived"); });
+      if (!card || !arrived) return;
+      card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+      void card.offsetWidth;                      // restart the pulse animation
+      card.classList.add("is-arrived");
+      card.focus({ preventScroll: true });
+    }
+    function fromHash() {
+      var id = location.hash.slice(1);
+      var card = id && document.getElementById(id);
+      if (card && card.hasAttribute("data-fp-card")) {
+        card.classList.add("is-in");              // skip the scroll-reveal fade
+        setTimeout(function () { select(card, true); }, 120);
+      }
+    }
+    cards.forEach(function (card) {
+      card.addEventListener("click", function (e) {
+        if (e.target.closest("a")) return;        // the CTA link keeps working
+        select(card, false);
+        if (history.replaceState) history.replaceState(null, "", "#" + card.id);
+      });
+    });
+    window.addEventListener("hashchange", fromHash);
+    fromHash();
+  })();
+
+  /* ---------- 13d. HOME PHONE 3D TILT ----------
+     Pointer position → --rx / --ry on the wrapper, one write per frame.
+     Only on fine pointers; touch devices keep the simple CSS lift. */
+  (function phoneTilt() {
+    var wrap = document.querySelector("[data-phone-tilt]");
+    if (!wrap || reduceMotion || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    var raf = 0, px = 0, py = 0;
+    wrap.addEventListener("pointermove", function (e) {
+      var r = wrap.getBoundingClientRect();
+      px = (e.clientX - r.left) / r.width - 0.5;
+      py = (e.clientY - r.top) / r.height - 0.5;
+      wrap.classList.add("is-tilting");
+      if (!raf) raf = requestAnimationFrame(function () {
+        raf = 0;
+        wrap.style.setProperty("--ry", (px * 16).toFixed(2) + "deg");
+        wrap.style.setProperty("--rx", (-py * 12).toFixed(2) + "deg");
+      });
+    });
+    wrap.addEventListener("pointerleave", function () {
+      wrap.classList.remove("is-tilting");
+      wrap.style.setProperty("--ry", "0deg");
+      wrap.style.setProperty("--rx", "0deg");
+    });
+  })();
+
+  /* ---------- 14. QUOTE POP-UP ----------
+     A native <dialog> (focus trap, Esc and backdrop come free), centred on screen.
+     Opens by itself once only per visitor (9 s after arrival), never on the
+     contact page. Any [data-promo-open] element can still open it on demand. */
+  (function promo() {
+    if (!window.HTMLDialogElement) return;
+    var onContact = /contact\.html$/.test(location.pathname);
+    var store = {
+      get: function (k, s) { try { return (s ? sessionStorage : localStorage).getItem(k); } catch (e) { return null; } },
+      set: function (k, v, s) { try { (s ? sessionStorage : localStorage).setItem(k, v); } catch (e) {} }
+    };
+    var FIRST_DELAY = 9000, timer = 0;
+
+    var dlg = document.createElement("dialog");
+    dlg.className = "promo";
+    dlg.setAttribute("aria-labelledby", "promo-title");
+    dlg.innerHTML =
+      '<div class="promo-card" tabindex="-1" autofocus>' +
+        '<button class="promo-close" type="button" aria-label="Close" data-promo-close>' +
+          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>' +
+        '</button>' +
+        '<div class="promo-media">' +
+          '<img src="assets/img/promo-spring.webp" alt="" width="880" height="1100" loading="lazy" decoding="async">' +
+          '<div class="promo-media-copy">' +
+            '<p class="promo-kicker">Sydney spring 2026</p>' +
+            '<p class="promo-headline">Store your sunshine <span>before the rebate drops.</span></p>' +
+            '<p class="promo-sub">The federal battery rebate steps down again on 1&nbsp;January&nbsp;2027.</p>' +
+          '</div>' +
+        '</div>' +
+        '<div class="promo-body">' +
+          '<p class="promo-eyebrow">Complimentary assessment</p>' +
+          '<h2 class="promo-title" id="promo-title">Get your <span class="promo-hl">free quote</span></h2>' +
+          '<p class="promo-lead">Provide a few details and our team will design a solar and battery system tailored to your energy usage.</p>' +
+          '<form class="promo-form" novalidate>' +
+            '<div class="input-group"><label for="pq-name">Full name <span class="req" aria-hidden="true">*</span></label>' +
+              '<input type="text" id="pq-name" name="name" autocomplete="name" required placeholder="Your name">' +
+              '<span class="error-msg">Please tell us your name.</span></div>' +
+            '<div class="promo-row">' +
+              '<div class="input-group"><label for="pq-phone">Phone <span class="req" aria-hidden="true">*</span></label>' +
+                '<input type="tel" id="pq-phone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="04__ ___ ___">' +
+                '<span class="error-msg">Please enter a valid phone number.</span></div>' +
+              '<div class="input-group"><label for="pq-email">Email <span class="req" aria-hidden="true">*</span></label>' +
+                '<input type="email" id="pq-email" name="email" autocomplete="email" inputmode="email" required placeholder="you@example.com">' +
+                '<span class="error-msg">Please enter a valid email.</span></div>' +
+            '</div>' +
+            '<div class="input-group"><label for="pq-address">Suburb or address</label>' +
+              '<input type="text" id="pq-address" name="address" autocomplete="street-address" placeholder="e.g. Castle Hill NSW 2154"></div>' +
+            '<div class="input-group"><label for="pq-interest">Interested in</label>' +
+              '<select id="pq-interest" name="interest">' +
+                '<option>Solar + battery</option><option>Battery only</option><option>Solar only</option>' +
+                '<option>Commercial solar</option><option>EV charger</option><option>Not sure yet</option>' +
+              '</select></div>' +
+            '<label class="promo-consent input-group"><input type="checkbox" name="consent" required>' +
+              '<span>I agree to Sinvesta Group contacting me about my enquiry.</span>' +
+              '<span class="error-msg">Please tick to let us contact you.</span></label>' +
+            '<button class="btn btn--gold btn--lg btn--block promo-submit" type="submit">Submit request' +
+              '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>' +
+            '<p class="promo-note">No obligation &middot; rebates taken off upfront &middot; opens your email app to send</p>' +
+            '<p class="promo-status" role="status" aria-live="polite"></p>' +
+          '</form>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(dlg);
+
+    var pform = dlg.querySelector("form");
+    var lastFocus = null;
+
+    function open() {
+      if (dlg.open) return;
+      lastFocus = document.activeElement;
+      clearTimeout(timer);
+      dlg.showModal();
+      document.documentElement.classList.add("promo-lock");
+      store.set("sv-promo-shown", "1");
+    }
+    function schedule(ms) {
+      clearTimeout(timer);
+      if (onContact || store.get("sv-promo-shown") || store.get("sv-promo-sent")) return;
+      timer = setTimeout(open, ms);
+    }
+    function close() {
+      dlg.classList.add("is-closing");
+      setTimeout(function () {
+        dlg.classList.remove("is-closing");
+        if (dlg.open) dlg.close();
+      }, reduceMotion ? 0 : 180);
+    }
+    dlg.addEventListener("close", function () {
+      document.documentElement.classList.remove("promo-lock");
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    });
+    dlg.addEventListener("cancel", function (e) { e.preventDefault(); close(); });
+    dlg.addEventListener("click", function (e) {
+      if (e.target === dlg || e.target.closest("[data-promo-close]")) close();
+    });
+    document.addEventListener("click", function (e) {
+      var t = e.target.closest("[data-promo-open]");
+      if (t) { e.preventDefault(); open(); }
+    });
+
+    pform.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var ok = true;
+      pform.querySelectorAll("[required]").forEach(function (f) {
+        var v = f.type === "checkbox" ? f.checked : f.value.trim() !== "";
+        if (v && f.type === "email") v = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim());
+        if (v && f.type === "tel") v = f.value.replace(/[^\d]/g, "").length >= 8;
+        f.closest(".input-group").classList.toggle("has-error", !v);
+        if (!v && ok) { f.focus(); ok = false; }
+      });
+      if (!ok) return;
+
+      var d = new FormData(pform);
+      var btn = pform.querySelector('[type="submit"]');
+      if (btn) btn.disabled = true;
+
+      sendEnquiry({
+        name: d.get("name") || "",
+        phone: d.get("phone") || "",
+        email: d.get("email") || "",
+        suburb: d.get("address") || "",
+        system: d.get("interest") || "",
+        source: "promo-popup"
+      }).then(function (sent) {
+        if (btn) btn.disabled = false;
+        if (sent) {
+          pform.querySelector(".promo-status").textContent =
+            "Thanks! Your request has been sent. We'll be in touch soon.";
+        } else {
+          var body = [
+            "Name: " + d.get("name"),
+            "Phone: " + d.get("phone"),
+            "Email: " + d.get("email"),
+            "Suburb / address: " + (d.get("address") || ""),
+            "Interested in: " + d.get("interest"),
+            "",
+            "Sent from the website quote pop-up."
+          ].join("\n");
+          pform.querySelector(".promo-status").textContent =
+            "Thanks! Your email app should open with this filled in. If it doesn't, call 0415 301 979.";
+          window.location.href = "mailto:phong@sinvesta.com.au" +
+            "?subject=" + encodeURIComponent("Quote request — " + d.get("name")) +
+            "&body=" + encodeURIComponent(body);
+        }
+        pform.reset();
+        store.set("sv-promo-sent", "1");
+      });
+    });
+    pform.querySelectorAll("[required]").forEach(function (f) {
+      f.addEventListener(f.type === "checkbox" ? "change" : "input", function () {
+        f.closest(".input-group").classList.remove("has-error");
+      });
+    });
+
+    // Auto-open once: 9 s after the first visit, then never again by itself.
+    schedule(FIRST_DELAY);
+  })();
 })();

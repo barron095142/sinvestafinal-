@@ -2,3 +2,27 @@
 [build]
   publish = "SINVESTA MODERN FINAL WEB"
   command = ""
+  # netlify/edge-functions/ applies the /admin CMS settings to each page as it's served.
+  edge_functions = "netlify/edge-functions"
+
+# ---------------------------------------------------------------------------
+# /admin — the CMS runs as a separate Netlify site (the admin/ folder) and is
+# proxied here, so it lives at sinvesta.com.au/admin with no public link to it.
+# Replace the host below with your admin site's Netlify URL after deploying it.
+# ---------------------------------------------------------------------------
+[[redirects]]
+  from = "/admin"
+  to = "https://sinvesta-admin.netlify.app/admin"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/admin/*"
+  to = "https://sinvesta-admin.netlify.app/admin/:splat"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

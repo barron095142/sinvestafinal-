@@ -103,24 +103,20 @@ If you change these, also update the visible "How this is worked out" note in
 
 ## The contact form
 
-There is **no server**, so the form opens the visitor's email app with everything filled
-in, addressed to `phong@sinvesta.com.au`. That works everywhere and costs nothing, but it
-depends on the visitor having email set up.
+Both quote forms (contact page and pop-up) send enquiries to the **admin dashboard**
+at `/admin`, which saves them and emails them to the address set in Global Settings.
+See [`../admin/README.md`](../admin/README.md).
 
-To get submissions delivered straight to your inbox instead, sign up for a free form
-service and change one line. With [Formspree](https://formspree.io):
+When the admin can't be reached (for example when you open the HTML straight from
+disk or preview it with `START-WEBSITE.bat`), the form falls back to opening the
+visitor's email app, addressed to `phong@sinvesta.com.au`, as it always has.
 
-1. Create a form, copy your endpoint (looks like `https://formspree.io/f/abcdwxyz`).
-2. In `contact.html`, change:
-   ```html
-   <form class="form" id="quote-form" novalidate>
-   ```
-   to:
-   ```html
-   <form class="form" id="quote-form" action="https://formspree.io/f/abcdwxyz" method="POST">
-   ```
-3. In `assets/js/main.js`, delete the `e.preventDefault();` line in section 8 so the
-   browser submits normally. The validation above it keeps working.
+## Editing through the admin
+
+Text marked with `data-cms="…"` in the HTML (hero headlines, package prices and
+descriptions, product renders, project photos), plus every page's SEO tags, analytics
+and verification codes, can be changed at `/admin` without touching these files.
+If you change hooked text here by hand, run `npm run sync-content` in `admin/`.
 
 ---
 

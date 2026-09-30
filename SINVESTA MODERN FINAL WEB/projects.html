@@ -7,7 +7,10 @@
 <meta name="description" content="Real Sinvesta Group solar installations across Sydney — residential and commercial arrays, Fronius and Solis inverters, Sungrow and Tesla battery systems, and EV charger fit-outs.">
 <meta name="theme-color" content="#0B5FA5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#070C14" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="assets/img/logo.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="assets/fonts/DMSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
@@ -38,7 +41,7 @@ document.documentElement.classList.add("js");})();
     <nav class="nav-links" aria-label="Primary">
       <a class="nav-link" href="index.html">Home</a>
       <a class="nav-link" href="packages.html">Solar Packages</a>
-      <a class="nav-link" href="rebates.html">Rebates</a>
+      <a class="nav-link" href="rebates.html">Rebates &amp; Finance</a>
       <a class="nav-link" href="projects.html" aria-current="page">Projects</a>
       <a class="nav-link" href="about.html">About</a>
       <a class="nav-link" href="contact.html">Contact</a>
@@ -68,7 +71,7 @@ document.documentElement.classList.add("js");})();
     <nav aria-label="Mobile">
       <a class="drawer-link" href="index.html">Home</a>
       <a class="drawer-link" href="packages.html">Solar Packages</a>
-      <a class="drawer-link" href="rebates.html">Rebates</a>
+      <a class="drawer-link" href="rebates.html">Rebates &amp; Finance</a>
       <a class="drawer-link" href="projects.html" aria-current="page">Projects</a>
       <a class="drawer-link" href="about.html">About</a>
       <a class="drawer-link" href="contact.html">Contact</a>
@@ -84,7 +87,7 @@ document.documentElement.classList.add("js");})();
 
 <section class="page-head page-head--photo">
   <div class="page-head-bg">
-    <img src="assets/img/hero-sunset.jpg" alt="Sinvesta solar array on a Sydney hillside home at sunset." loading="eager" fetchpriority="high">
+    <img data-cms-src="projects.hero.image" src="assets/img/hero-sunset.jpg" alt="Sinvesta solar array on a Sydney hillside home at sunset." loading="eager" fetchpriority="high">
   </div>
   <div class="container">
     <nav class="crumbs" aria-label="Breadcrumb">
@@ -92,8 +95,8 @@ document.documentElement.classList.add("js");})();
     </nav>
     <div class="section-head" style="margin-bottom:0">
       <p class="eyebrow">Our work</p>
-      <h1 class="h-lg"><em class="hl">2,500 projects.</em> Here are some of them.</h1>
-      <p class="lead">
+      <h1 data-cms="projects.hero.title" class="h-lg"><em class="hl">2,500 projects.</em> Here are some of them.</h1>
+      <p data-cms="projects.hero.lead" class="lead">
         Every photograph on this page is a Sinvesta installation — our panels, our inverters,
         our cable runs. Nothing here is a stock image.
       </p>
@@ -102,7 +105,7 @@ document.documentElement.classList.add("js");})();
 </section>
 
 <!-- ROOFTOP ARRAYS -->
-<section class="section">
+<section class="section proj-3d">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">Rooftop arrays</p>
@@ -111,7 +114,7 @@ document.documentElement.classList.add("js");})();
 
     <div class="grid grid-3">
       <figure class="card reveal" style="margin:0">
-        <div class="card-media"><img src="assets/img/hero-sunset.jpg" alt="Solar array on a hillside home at sunset, Sydney." loading="lazy"></div>
+        <div class="card-media"><img data-cms-src="projects.gallery.1" src="assets/img/hero-sunset.jpg" alt="Solar array on a hillside home at sunset, Sydney." loading="lazy"></div>
         <figcaption class="card-body">
           <span class="badge">Residential</span>
           <h3 class="card-title" style="font-size:var(--step-1)">Hillside home, north shore</h3>
@@ -120,7 +123,7 @@ document.documentElement.classList.add("js");})();
       </figure>
 
       <figure class="card reveal" style="margin:0">
-        <div class="card-media"><img src="assets/img/roof-commercial.jpg" alt="Commercial solar array on a metal warehouse roof." loading="lazy"></div>
+        <div class="card-media"><img data-cms-src="projects.gallery.2" src="assets/img/roof-commercial.jpg" alt="Commercial solar array on a metal warehouse roof." loading="lazy"></div>
         <figcaption class="card-body">
           <span class="badge">Commercial</span>
           <h3 class="card-title" style="font-size:var(--step-1)">Warehouse roof, Klip-Lok mount</h3>
@@ -129,7 +132,7 @@ document.documentElement.classList.add("js");})();
       </figure>
 
       <figure class="card reveal" style="margin:0">
-        <div class="card-media"><img src="assets/img/roof-dusk.jpg" alt="Residential solar array photographed at dusk." loading="lazy"></div>
+        <div class="card-media"><img data-cms-src="projects.gallery.3" src="assets/img/roof-dusk.jpg" alt="Residential solar array photographed at dusk." loading="lazy"></div>
         <figcaption class="card-body">
           <span class="badge">Residential</span>
           <h3 class="card-title" style="font-size:var(--step-1)">Family home, western Sydney</h3>
@@ -138,7 +141,7 @@ document.documentElement.classList.add("js");})();
       </figure>
 
       <figure class="card reveal" style="margin:0">
-        <div class="card-media"><img src="assets/img/roof-tile-1.jpg" alt="Solar panels installed on a tiled roof." loading="lazy"></div>
+        <div class="card-media"><img data-cms-src="projects.gallery.4" src="assets/img/roof-tile-1.jpg" alt="Solar panels installed on a tiled roof." loading="lazy"></div>
         <figcaption class="card-body">
           <span class="badge">Residential</span>
           <h3 class="card-title" style="font-size:var(--step-1)">Tile roof install</h3>
@@ -147,7 +150,7 @@ document.documentElement.classList.add("js");})();
       </figure>
 
       <figure class="card reveal" style="margin:0">
-        <div class="card-media"><img src="assets/img/roof-tile-2.jpg" alt="Solar array across a tiled residential roof." loading="lazy"></div>
+        <div class="card-media"><img data-cms-src="projects.gallery.5" src="assets/img/roof-tile-2.jpg" alt="Solar array across a tiled residential roof." loading="lazy"></div>
         <figcaption class="card-body">
           <span class="badge">Residential</span>
           <h3 class="card-title" style="font-size:var(--step-1)">Full northern pitch</h3>
@@ -156,11 +159,138 @@ document.documentElement.classList.add("js");})();
       </figure>
 
       <figure class="card reveal" style="margin:0">
-        <div class="card-media"><img src="assets/img/roof-flat.jpg" alt="Solar panels on a low-pitch residential roof." loading="lazy"></div>
+        <div class="card-media"><img data-cms-src="projects.gallery.6" src="assets/img/roof-flat.jpg" alt="Solar panels on a low-pitch residential roof." loading="lazy"></div>
         <figcaption class="card-body">
           <span class="badge">Residential</span>
           <h3 class="card-title" style="font-size:var(--step-1)">Low-pitch roof</h3>
           <p class="muted" style="font-size:.92rem">Low-profile rail system keeping the array tight to a shallow roof line.</p>
+        </figcaption>
+      </figure>
+      <figure class="card reveal" style="margin:0">
+        <div class="card-media"><img data-cms-src="projects.gallery.7" src="assets/img/roof-industrial-rows.jpg" alt="Long rows of solar panels down a corrugated industrial roof, clear of the skylights." loading="lazy" width="1200" height="1600"></div>
+        <figcaption class="card-body">
+          <span class="badge">Commercial</span>
+          <h3 class="card-title" style="font-size:var(--step-1)">Industrial roof, full-length rows</h3>
+          <p class="muted" style="font-size:.92rem">Long, straight runs down a corrugated factory roof, set out clear of the skylights and roof vents.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card reveal" style="margin:0">
+        <div class="card-media"><img data-cms-src="projects.gallery.8" src="assets/img/roof-parapet-metal.jpg" alt="Solar array on a metal-deck roof behind a parapet wall." loading="lazy" width="1008" height="1490"></div>
+        <figcaption class="card-body">
+          <span class="badge">Metal roof</span>
+          <h3 class="card-title" style="font-size:var(--step-1)">Parapet roof, metal deck</h3>
+          <p class="muted" style="font-size:.92rem">Rows set back from the parapet on a corrugated metal deck, laid out around the roof penetrations.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card reveal" style="margin:0">
+        <div class="card-media"><img data-cms-src="projects.gallery.9" src="assets/img/roof-tilt-frames.jpg" alt="Solar panels on tilt frames over a low-pitch metal roof, edged with bird-proofing mesh." loading="lazy" width="1600" height="1200"></div>
+        <figcaption class="card-body">
+          <span class="badge">Metal roof</span>
+          <h3 class="card-title" style="font-size:var(--step-1)">Tilt frames + bird-proofing</h3>
+          <p class="muted" style="font-size:.92rem">Tilt frames lift the panels off a low-pitch deck, with mesh clipped around the edge to keep birds out from underneath.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card reveal" style="margin:0">
+        <div class="card-media"><img data-cms-src="projects.gallery.10" src="assets/img/roof-birdproof-metal.jpg" alt="Solar array on a metal roof with bird-proofing mesh around the panel edge, bushland behind." loading="lazy" width="1600" height="1200"></div>
+        <figcaption class="card-body">
+          <span class="badge">Metal roof</span>
+          <h3 class="card-title" style="font-size:var(--step-1)">Bird-proofed metal roof</h3>
+          <p class="muted" style="font-size:.92rem">Rail-mounted array on a metal roof, with a mesh guard fitted all the way round so birds can't nest under the panels.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- BATTERIES & EV -->
+<section class="section section--alt proj-3d">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Storage &amp; charging</p>
+      <h2 class="h-md">Batteries and EV chargers <em class="hl">in the wild.</em></h2>
+    </div>
+
+    <div class="grid grid-3">
+      <figure class="card reveal" style="margin:0">
+        <div class="card-media"><img data-cms-src="projects.gallery.11" src="assets/img/battery-sigen-signage.jpg" alt="Sigenergy SigenStor battery with three modules installed on a weatherboard wall, with an isolator, conduit and battery safety signage." loading="lazy" width="1050" height="1500" style="object-position:30% 72%"></div>
+        <figcaption class="card-body">
+          <span class="badge">Battery</span>
+          <h3 class="card-title" style="font-size:var(--step-1)">SigenStor, three-module stack</h3>
+          <p class="muted" style="font-size:.92rem">Mounted on a weatherboard wall with the isolator, conduit and battery safety signage in place.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card reveal" style="margin:0">
+        <div class="card-media"><img data-cms-src="projects.gallery.12" src="assets/img/battery-stack.jpg" alt="Tall modular battery stack installed against a dark rendered wall." loading="lazy"></div>
+        <figcaption class="card-body">
+          <span class="badge">Battery</span>
+          <h3 class="card-title" style="font-size:var(--step-1)">High-capacity modular stack</h3>
+          <p class="muted" style="font-size:.92rem">A tall modular bank for a high-consumption household, expandable module by module.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card reveal" style="margin:0">
+        <div class="card-media"><img data-cms-src="projects.gallery.13" src="assets/img/ev-tesla.jpg" alt="Tesla Wall Connector installed with Sinvesta Group branding." loading="lazy"></div>
+        <figcaption class="card-body">
+          <span class="badge">EV</span>
+          <h3 class="card-title" style="font-size:var(--step-1)">Tesla Wall Connector</h3>
+          <p class="muted" style="font-size:.92rem">Wall Connector on a dedicated circuit with weatherproof isolator above, cable dressed and clipped.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card reveal" style="margin:0">
+        <div class="card-media"><img data-cms-src="projects.gallery.14" src="assets/img/battery-powerwall-pair.jpg" alt="Two Tesla Powerwall units and a Fronius inverter wall-mounted in a garage by Sinvesta Group." loading="lazy" width="606" height="884"></div>
+        <figcaption class="card-body">
+          <span class="badge badge--gold">Battery</span>
+          <h3 class="card-title" style="font-size:var(--step-1)">Twin Tesla Powerwall</h3>
+          <p class="muted" style="font-size:.92rem">Two Powerwall units either side of a Fronius inverter, mounted square and plumb with the run kept off the floor.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card reveal" style="margin:0">
+        <div class="card-media"><img data-cms-src="projects.gallery.15" src="assets/img/battery-sungrow-brick.jpg" alt="Stacked Sungrow battery installed against a brick wall with isolator and hazard signage." loading="lazy" width="684" height="829"></div>
+        <figcaption class="card-body">
+          <span class="badge">Battery</span>
+          <h3 class="card-title" style="font-size:var(--step-1)">Sungrow stack, brick wall</h3>
+          <p class="muted" style="font-size:.92rem">Stacked Sungrow storage on a levelled plinth — isolator, conduit and full hazard signage to standard.</p>
+        </figcaption>
+      </figure>
+      <figure class="card reveal" style="margin:0">
+        <div class="card-media"><img data-cms-src="projects.gallery.16" src="assets/img/battery-sigen-twin.jpg" alt="Two Sigenergy SigenStor battery stacks side by side in a garage, next to the switchboard." loading="lazy" width="1600" height="1200"></div>
+        <figcaption class="card-body">
+          <span class="badge">Battery</span>
+          <h3 class="card-title" style="font-size:var(--step-1)">Twin SigenStor, garage</h3>
+          <p class="muted" style="font-size:.92rem">Two Sigenergy stacks side by side on a level floor, with the switchboard beside them labelled for the ES and PV circuits.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card reveal" style="margin:0">
+        <div class="card-media"><img data-cms-src="projects.gallery.17" src="assets/img/battery-sigen-bollards.jpg" alt="Sigenergy SigenStor battery in a garage with two yellow bollards in front of it." loading="lazy" width="1080" height="1440"></div>
+        <figcaption class="card-body">
+          <span class="badge">Battery</span>
+          <h3 class="card-title" style="font-size:var(--step-1)">SigenStor behind bollards</h3>
+          <p class="muted" style="font-size:.92rem">Garage install with a pair of yellow bollards in front, so the car can never nudge the stack.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card reveal" style="margin:0">
+        <div class="card-media"><img data-cms-src="projects.gallery.18" src="assets/img/battery-sigen-sidepath.jpg" alt="Slim Sigenergy SigenStor battery stack mounted along a side walkway." loading="lazy" width="1200" height="1600"></div>
+        <figcaption class="card-body">
+          <span class="badge">Battery</span>
+          <h3 class="card-title" style="font-size:var(--step-1)">SigenStor down the side path</h3>
+          <p class="muted" style="font-size:.92rem">A slim outdoor stack tucked tight to the wall along the side of the house, leaving the walkway clear.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="card reveal" style="margin:0">
+        <div class="card-media"><img data-cms-src="projects.gallery.19" src="assets/img/battery-sigen-sidewall.jpg" alt="Sigenergy SigenStor battery stack on a side wall at dusk." loading="lazy" width="1200" height="1600"></div>
+        <figcaption class="card-body">
+          <span class="badge">Battery</span>
+          <h3 class="card-title" style="font-size:var(--step-1)">SigenStor, side wall</h3>
+          <p class="muted" style="font-size:.92rem">Outdoor-rated SigenStor on the side wall, clear of the gate and the path.</p>
         </figcaption>
       </figure>
     </div>
@@ -168,7 +298,7 @@ document.documentElement.classList.add("js");})();
 </section>
 
 <!-- INVERTERS -->
-<section class="section section--alt">
+<section class="section proj-3d">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">Inverters &amp; switchgear</p>
@@ -185,91 +315,45 @@ document.documentElement.classList.add("js");})();
       <figure><img src="assets/img/inverter-symo-branded.jpg" alt="Fronius Symo Advanced inverter labelled with Sinvesta Group branding." loading="lazy"><figcaption>Labelled and handed over</figcaption></figure>
       <figure><img src="assets/img/meterbox.jpg" alt="Meter box and isolation switchgear installed by Sinvesta Group." loading="lazy"><figcaption>Metering &amp; isolation</figcaption></figure>
       <figure><img src="assets/img/product-kit.jpg" alt="A 475W Jinko Tiger NEO solar module alongside a Fronius Primo inverter." loading="lazy"><figcaption>475W Jinko Tiger NEO + Fronius Primo</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<!-- BATTERIES & EV -->
-<section class="section">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Storage &amp; charging</p>
-      <h2 class="h-md">Batteries and EV chargers <em class="hl">in the wild.</em></h2>
-    </div>
-
-    <div class="grid grid-3">
-      <figure class="card reveal" style="margin:0">
-        <div class="card-media"><img src="assets/img/battery-sungrow.jpg" alt="Two Sungrow battery stacks and inverter installed beside a home." loading="lazy"></div>
-        <figcaption class="card-body">
-          <span class="badge">Battery</span>
-          <h3 class="card-title" style="font-size:var(--step-1)">Twin Sungrow stacks</h3>
-          <p class="muted" style="font-size:.92rem">Two stacked battery banks with hybrid inverter, set on a level plinth clear of the path.</p>
-        </figcaption>
-      </figure>
-
-      <figure class="card reveal" style="margin:0">
-        <div class="card-media"><img src="assets/img/battery-stack.jpg" alt="Tall modular battery stack installed against a dark rendered wall." loading="lazy"></div>
-        <figcaption class="card-body">
-          <span class="badge">Battery</span>
-          <h3 class="card-title" style="font-size:var(--step-1)">High-capacity modular stack</h3>
-          <p class="muted" style="font-size:.92rem">A tall modular bank for a high-consumption household, expandable module by module.</p>
-        </figcaption>
-      </figure>
-
-      <figure class="card reveal" style="margin:0">
-        <div class="card-media"><img src="assets/img/ev-tesla.jpg" alt="Tesla Wall Connector installed with Sinvesta Group branding." loading="lazy"></div>
-        <figcaption class="card-body">
-          <span class="badge">EV</span>
-          <h3 class="card-title" style="font-size:var(--step-1)">Tesla Wall Connector</h3>
-          <p class="muted" style="font-size:.92rem">Wall Connector on a dedicated circuit with weatherproof isolator above, cable dressed and clipped.</p>
-        </figcaption>
-      </figure>
-
-      <figure class="card reveal" style="margin:0">
-        <div class="card-media"><img src="assets/img/battery-powerwall-pair.jpg" alt="Two Tesla Powerwall units and a Fronius inverter wall-mounted in a garage by Sinvesta Group." loading="lazy" width="606" height="884"></div>
-        <figcaption class="card-body">
-          <span class="badge badge--gold">Battery</span>
-          <h3 class="card-title" style="font-size:var(--step-1)">Twin Tesla Powerwall</h3>
-          <p class="muted" style="font-size:.92rem">Two Powerwall units either side of a Fronius inverter, mounted square and plumb with the run kept off the floor.</p>
-        </figcaption>
-      </figure>
-
-      <figure class="card reveal" style="margin:0">
-        <div class="card-media"><img src="assets/img/battery-sungrow-brick.jpg" alt="Stacked Sungrow battery installed against a brick wall with isolator and hazard signage." loading="lazy" width="684" height="829"></div>
-        <figcaption class="card-body">
-          <span class="badge">Battery</span>
-          <h3 class="card-title" style="font-size:var(--step-1)">Sungrow stack, brick wall</h3>
-          <p class="muted" style="font-size:.92rem">Stacked Sungrow storage on a levelled plinth — isolator, conduit and full hazard signage to standard.</p>
-        </figcaption>
-      </figure>
+      <figure><img src="assets/img/switchboard-sigen-garage.jpg" alt="Two Sigenergy SigenStor units in a garage beside a switchboard labelled for the ES and PV circuits." loading="lazy" width="1200" height="1600"><figcaption>Sigenergy hybrid · labelled switchboard</figcaption></figure>
     </div>
   </div>
 </section>
 
 <!-- MONITORING -->
-<section class="section section--alt">
+<section class="section section--alt proj-3d">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">Proof it works</p>
-      <h2 class="h-md"><em class="hl">Output</em> from systems we commissioned.</h2>
+      <h2 class="h-md"><em class="hl">See your system</em> working, live.</h2>
       <p class="lead">
-        These are live screens from Sinvesta installations, not marketing mock-ups.
-        Production in orange, what the household actually used in blue.
+        Every system we install comes with its own app. Watch solar, battery, home and grid in
+        real time, and see exactly where each day&rsquo;s energy went.
       </p>
     </div>
 
-    <div class="split">
+    <div class="split" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));align-items:stretch">
       <div>
-        <div class="phone-frame reveal">
-          <img src="assets/img/monitor-live.jpg" alt="Monitoring app showing 13.7 kW current output, 99 percent self-consumption and 100 percent self-sufficiency." loading="lazy">
+        <div class="phone-frame phone-frame--even phone-fx reveal" style="--screen:#111111">
+          <img src="assets/img/monitor-tesla-app.jpg" alt="Tesla app screen for My Home showing live power for the Wall Connector, solar, home, Powerwall at 80 percent and the grid, with a Storm Watch alert." loading="lazy" width="690" height="1500">
+          <span class="fx-rain" aria-hidden="true"></span>
+          <svg class="fx-flow" viewBox="0 0 690 1500" preserveAspectRatio="xMidYMin meet" aria-hidden="true"><defs><linearGradient id="fxg-tesla" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#38BDF8"/><stop offset=".5" stop-color="#2563EB"/><stop offset="1" stop-color="#6366F1"/></linearGradient></defs><path class="fx-flow-base" d="M68,545 L152,455 L470,392 L607,515 L300,612 Z"/><path class="fx-flow-run" d="M68,545 L152,455 L470,392 L607,515 L300,612 Z" pathLength="100" stroke="url(#fxg-tesla)"/><path class="fx-flow-base" d="M22,362 L330,290 L447,352"/><path class="fx-flow-run" d="M22,362 L330,290 L447,352" pathLength="100" stroke="url(#fxg-tesla)"/></svg>
         </div>
-        <p class="center faint" style="margin-top:var(--sp-4)">13.7 kW live · 99% self-consumption · 100% self-sufficient</p>
+        <p class="center faint" style="margin-top:var(--sp-4)">Tesla app · Powerwall, solar and EV charger in one view · Storm Watch charges ahead of storms</p>
       </div>
       <div>
-        <div class="phone-frame reveal">
-          <img src="assets/img/monitor-chart.jpg" alt="Daily production chart showing 90.24 kWh produced and 70.29 kWh consumed." loading="lazy">
+        <div class="phone-frame phone-frame--even phone-fx reveal" style="--screen:#2A2D33">
+          <img src="assets/img/monitor-sigen-demo.jpg" alt="Sigenergy app demo screen showing a 3D home with live solar, SigenStor battery, home, EV chargers and grid, plus current mode and battery level." loading="lazy" width="739" height="1600">
+          <span class="fx-rain" aria-hidden="true"></span>
+          <svg class="fx-flow" viewBox="0 0 739 1600" preserveAspectRatio="xMidYMin meet" aria-hidden="true"><defs><linearGradient id="fxg-sigen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#38BDF8"/><stop offset=".5" stop-color="#2563EB"/><stop offset="1" stop-color="#6366F1"/></linearGradient></defs><path class="fx-flow-base" d="M70,490 L160,352 L492,410 L385,570 Z"/><path class="fx-flow-run" d="M70,490 L160,352 L492,410 L385,570 Z" pathLength="100" stroke="url(#fxg-sigen)"/><path class="fx-flow-base" d="M492,410 L582,497 L582,600"/><path class="fx-flow-run" d="M492,410 L582,497 L582,600" pathLength="100" stroke="url(#fxg-sigen)"/></svg>
         </div>
-        <p class="center faint" style="margin-top:var(--sp-4)">90.24 kWh produced · 60.21 kWh self-consumed · one day</p>
+        <p class="center faint" style="margin-top:var(--sp-4)">Sigenergy app · live energy flow, battery level and operating mode</p>
+      </div>
+      <div>
+        <div class="phone-frame phone-frame--even reveal" style="--screen:#2A2D33">
+          <img src="assets/img/monitor-sigen-flow.jpg" alt="Sigenergy energy statistics for 29 September 2026: 45.64 kWh from solar, 2.98 kWh from the battery and 0.1 kWh from the grid, going to 12.56 kWh battery charging, 8.71 kWh home load and 27.45 kWh exported." loading="lazy" width="738" height="1600">
+        </div>
+        <p class="center faint" style="margin-top:var(--sp-4)">One day on a SigenStor system · 45.64 kWh of solar · 93.69% of supply from the sun · 27.45 kWh exported</p>
       </div>
     </div>
   </div>
@@ -313,12 +397,12 @@ document.documentElement.classList.add("js");})();
       <div>
         <h4>Packages</h4>
         <div class="footer-links">
-          <a href="packages.html#p66">6.6kW + 18kWh battery</a>
-          <a href="packages.html#p1045">10.45kW + 27kWh battery</a>
-          <a href="packages.html#p1328">13.28kW + 36kWh battery</a>
-          <a href="packages.html#p30">30kW commercial</a>
+          <a href="packages.html#p66">6.6kW + 13.5kWh battery</a>
+          <a href="packages.html#p1045">10kW + 27kWh battery</a>
+          <a href="packages.html#p1328">13kW + 36kWh battery</a>
           <a href="packages.html#p50">50kW commercial</a>
           <a href="packages.html#p100">100kW commercial</a>
+          <a href="packages.html#p200">200kW+ custom industrial</a>
         </div>
       </div>
       <div>
@@ -330,6 +414,7 @@ document.documentElement.classList.add("js");})();
           <a href="contact.html?system=Off-grid">Off-grid systems</a>
           <a href="index.html#ev">EV charging</a>
           <a href="rebates.html#estimator">Rebate estimator</a>
+          <a href="rebates.html#finance">Business finance</a>
         </div>
       </div>
       <div>
