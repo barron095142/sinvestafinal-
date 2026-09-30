@@ -4,7 +4,7 @@ import {
   ExternalLink, FileText, Images, Inbox, LayoutDashboard, LogOut, Menu, Network, Plug, Search, Settings, X,
 } from "lucide-react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import { api } from "@/lib/constants";
 import { cx } from "./ui/primitives";
@@ -36,7 +36,8 @@ const NAV: { heading: string; items: { href: string; label: string; icon: typeof
   },
 ];
 
-function isActive(pathname: string, href: string) {
+function isActive(rawPath: string, href: string) {
+  const pathname = rawPath.replace(/(.)\/$/, "$1"); // static export serves /settings/
   if (href === "/") return pathname === "/";
   if (href === "/seo") return pathname === "/seo";
   return pathname === href || pathname.startsWith(href + "/");
@@ -101,7 +102,6 @@ function Sidebar({ newInquiries, onNavigate }: { newInquiries: number; onNavigat
 
 export function Shell({ email, newInquiries, children }: { email: string; newInquiries: number; children: ReactNode }) {
   const [open, setOpen] = useState(false);
-  const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => setOpen(false), [pathname]);
@@ -113,9 +113,8 @@ export function Shell({ email, newInquiries, children }: { email: string; newInq
   }, [open]);
 
   async function logout() {
-    await fetch(api("/auth/logout"), { method: "POST" });
-    router.replace("/login");
-    router.refresh();
+    await fetch(api("/auth/logout"), { method: "POST", credentials: "same-origin" }).catch(() => {});
+    window.location.replace("/admin/login/");
   }
 
   return (

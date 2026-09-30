@@ -1,13 +1,18 @@
 "use client";
 
 import { RotateCcw, Save } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { api } from "@/lib/constants";
+import type { ZodType } from "zod";
+import { apiFetch, type ApiError } from "@/lib/client";
+import { contentSchema, indexingSchema, integrationsSchema, seoSchema, settingsSchema } from "@/lib/schemas";
 import { Button } from "./ui/primitives";
 import { useToast } from "./ui/toast";
 
 type Path = string;
+
+const SECTION_SCHEMAS: Record<string, ZodType> = {
+  settings: settingsSchema, content: contentSchema, seo: seoSchema, integrations: integrationsSchema, indexing: indexingSchema,
+};
 
 export function getIn(obj: unknown, path: Path): unknown {
   return path.split(".").reduce<unknown>((o, k) => (o == null ? o : (o as Record<string, unknown>)[k]), obj);
@@ -30,7 +35,6 @@ export function useSectionForm<T>(section: string, initial: T, opts: { label: st
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [saving, setSaving] = useState(false);
   const toast = useToast();
-  const router = useRouter();
 
   const dirty = useMemo(() => JSON.stringify(value) !== JSON.stringify(saved), [value, saved]);
 
@@ -51,36 +55,33 @@ export function useSectionForm<T>(section: string, initial: T, opts: { label: st
   }, []);
 
   const save = useCallback(async () => {
+    // Validate here first for instant field errors; the PHP API re-checks everything.
+    const schema = SECTION_SCHEMAS[section];
+    const parsed = schema.safeParse(value);
+    if (!parsed.success) {
+      const map: Record<string, string> = {};
+      for (const i of parsed.error.issues) map[i.path.join(".")] ??= i.message;
+      setErrors(map);
+      const n = Object.keys(map).length;
+      toast("error", "Some fields need fixing", `${n} field${n > 1 ? "s" : ""} need attention.`);
+      return;
+    }
     setSaving(true);
     try {
-      const res = await fetch(api(`/cms/${section}`), {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(value),
-      });
-      const body = await res.json().catch(() => ({}));
-      if (res.status === 401) {
-        toast("error", "Your session expired", "Sign in again — your edits are still on this page.");
-        return;
-      }
-      if (!res.ok) {
-        const map: Record<string, string> = {};
-        for (const d of (body.details as { path: string; message: string }[]) ?? []) map[d.path] = d.message;
-        setErrors(map);
-        const n = Object.keys(map).length;
-        toast("error", body.error ?? "Couldn't save", n ? `${n} field${n > 1 ? "s" : ""} need attention.` : undefined);
-        return;
-      }
+      await apiFetch(`/cms/${section}`, { method: "PUT", body: JSON.stringify(parsed.data) });
       setSaved(value);
       setErrors({});
-      toast("success", `${opts.label} saved`, "Live on the website within about a minute.");
-      router.refresh();
-    } catch {
-      toast("error", "Network error", "Check your connection and try again.");
+      toast("success", `${opts.label} saved`, "Live on the website straight away.");
+    } catch (e) {
+      const err = e as ApiError;
+      const map: Record<string, string> = {};
+      for (const d of err.details ?? []) map[d.path] = d.message;
+      setErrors(map);
+      toast("error", err.message || "Couldn't save", err.status === 0 ? "Check your connection and try again." : undefined);
     } finally {
       setSaving(false);
     }
-  }, [section, value, toast, opts.label, router]);
+  }, [section, value, toast, opts.label]);
 
   // ⌘S / Ctrl+S saves
   useEffect(() => {

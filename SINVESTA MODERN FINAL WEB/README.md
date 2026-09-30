@@ -40,6 +40,7 @@ The whole `sinvesta-site` folder is the website. Upload its **contents** to your
 
 | Host | How |
 |---|---|
+| **Bluehost (current)** | Build with the admin: see [`../admin/README.md`](../admin/README.md). Uploading only these files works, but without the admin. |
 | **Netlify** | Drag the `sinvesta-site` folder onto <https://app.netlify.com/drop> |
 | **Vercel** | `vercel deploy` from this folder, or drag-and-drop in the dashboard |
 | **cPanel / shared hosting** | Upload contents to `public_html/` via FTP or File Manager |

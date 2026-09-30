@@ -24,7 +24,7 @@ export function ImagePicker({ value, onChange, defaultValue }: { value: string; 
       </div>
       <div className="min-w-0 flex-1">
         <p className="truncate font-mono text-[11.5px] text-slate-600" title={value}>
-          {value ? value.replace(/^\/admin\/api\/media\//, "library/") : "No image"}
+          {value ? value.replace(/^\/uploads\//, "library/") : "No image"}
         </p>
         <div className="mt-1.5 flex flex-wrap gap-1.5">
           <Button type="button" size="sm" variant="secondary" onClick={() => setOpen(true)}>

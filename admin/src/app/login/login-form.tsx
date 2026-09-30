@@ -1,12 +1,20 @@
 "use client";
 
 import { ArrowRight, Eye, EyeOff, LoaderCircle, Lock, Mail } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { api } from "@/lib/constants";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { api, BASE_PATH } from "@/lib/constants";
 
-export function LoginForm({ next }: { next: string }) {
-  const router = useRouter();
+export function LoginForm() {
+  const raw = useSearchParams().get("next") ?? "";
+  // Only same-app paths; never an open redirect.
+  const next = /^\/(?!\/)[\w\-/]*$/.test(raw) ? raw : "/";
+  const target = `${BASE_PATH}${next.replace(/\/?$/, "/")}`;
+
+  // Already signed in? Skip the form.
+  useEffect(() => {
+    fetch(api("/auth/me"), { credentials: "same-origin" }).then((r) => r.ok && window.location.replace(target)).catch(() => {});
+  }, [target]);
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
@@ -19,12 +27,12 @@ export function LoginForm({ next }: { next: string }) {
     try {
       const res = await fetch(api("/auth/login"), {
         method: "POST",
+        credentials: "same-origin",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: form.get("email"), password: form.get("password") }),
       });
       if (res.ok) {
-        router.replace(next);
-        router.refresh();
+        window.location.replace(target);
         return;
       }
       const body = await res.json().catch(() => ({}));

@@ -1,140 +1,121 @@
-# Sinvesta Admin (`/admin`)
+# Sinvesta: website + admin on Bluehost
 
-The private control centre for sinvesta.com.au: quote enquiries, page content,
-SEO, sitemap/robots, analytics and tracking scripts. It is not linked from
-anywhere on the site. Type `/admin` after the domain to reach it.
+Everything runs on your Bluehost hosting at **www.sinvesta.com.au**:
 
-Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · Netlify Blobs storage.
+| URL | What |
+|---|---|
+| `www.sinvesta.com.au` | The public website (same design, plain HTML) |
+| `www.sinvesta.com.au/admin` | The private admin: enquiries, page content, SEO, sitemap, Google tags |
 
----
-
-## How it fits together
-
-```
-visitor ──► www.sinvesta.com.au  (static HTML, unchanged)
-              │
-              ├─ edge function netlify/edge-functions/cms.ts
-              │     on every page: applies content edits, SEO tags, JSON-LD,
-              │     analytics / verification / custom scripts, new contact details
-              ├─ edge function seo-files.ts → /sitemap.xml, /robots.txt
-              │
-              └─ /admin/*  ──proxy──►  this app (its own Netlify site)
-                                         ├─ admin UI (login required)
-                                         ├─ /admin/api/public/*  site-config, sitemap,
-                                         │                       robots, enquiry intake
-                                         └─ Netlify Blobs: settings, content, SEO,
-                                                           enquiries, uploaded images
-```
-
-- **The static HTML stays the source of truth for layout.** Editable spots carry a
-  `data-cms="…"` attribute. The CMS only overrides fields you have actually changed;
-  everything else is served exactly as written.
-- **If the admin is ever down**, the edge function serves the untouched static page and
-  a built-in sitemap/robots, so the public site never breaks.
-- **Quote forms** post to `/admin/api/public/inquiries`. The enquiry is saved to the
-  dashboard and emailed to the address in Global Settings (default
-  `PVEnergy.au@gmail.com`). If that fails (e.g. opening the HTML from disk), the form
-  falls back to opening the visitor's email app, as before.
+There are no links to `/admin` anywhere on the site. Type it in to reach it.
 
 ---
 
-## Deploy (one-time, about 15 minutes)
+## 1. Build the upload file (on your Mac, ~1 minute)
 
-### 1. Create the admin site on Netlify
-
-1. Netlify → **Add new site → Import an existing project** → pick this repository.
-2. **Base directory:** `admin` (build settings come from `admin/netlify.toml`).
-3. Before the first deploy, add **environment variables** (Site configuration →
-   Environment variables):
-
-   | Variable | Value |
-   |---|---|
-   | `ADMIN_EMAIL` | The email you'll sign in with |
-   | `ADMIN_PASSWORD_HASH` | Output of `npm run hash-password -- 'your-password'` (use the "Netlify" line) |
-   | `AUTH_SECRET` | 48+ random characters: `node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"` |
-   | `RESEND_API_KEY` | From [resend.com](https://resend.com) to email enquiries (recommended) |
-   | `RESEND_FROM` | e.g. `Sinvesta Website <quotes@sinvesta.com.au>` (domain verified in Resend) |
-
-4. Deploy. Note the site's address, e.g. `https://sinvesta-admin.netlify.app`.
-
-### 2. Point the public site at it
-
-In the **repository root** `netlify.toml`, replace both occurrences of
-`https://sinvesta-admin.netlify.app` with your admin site's address, then commit.
-The public site redeploys, and `https://www.sinvesta.com.au/admin` opens the login screen.
-
-### 3. Tell Google
-
-1. **Integrations & Scripts →** check the Search Console verification tags and GA4 ID
-   (both pre-filled from your old admin). Save.
-2. **Sitemap & Robots → Submit in Search Console**, then submit `sitemap.xml`.
-
----
-
-## Security
-
-- **Login:** bcrypt-hashed password (cost 12), constant-time checks, 5 attempts per
-  15 min per IP, with a delay on failure.
-- **Session:** signed JWT (HS256) in an `HttpOnly; Secure; SameSite=Strict` cookie scoped
-  to `/admin`. It lasts 8 hours. Changing `AUTH_SECRET` or `ADMIN_EMAIL` signs everyone out.
-- **Every route** is checked twice: `src/proxy.ts` blocks unauthenticated API calls,
-  and each page and route handler verifies the session itself.
-- **State-changing requests** must come from your own domain (Origin check), on top of
-  the SameSite cookie.
-- **Validation:** every save is checked on the server (Zod). Headlines allow only
-  `<em>`, `<strong>`, `<br>`. Uploads are identified by their bytes (PNG/JPG/WebP/AVIF/GIF;
-  SVG refused) and limited to 8 MB.
-- **Hidden from search:** `X-Robots-Tag: noindex`, `Disallow: /admin` in robots.txt,
-  and no links from the public site.
-- **Enquiry intake:** origin-checked, rate-limited, with a honeypot field.
-- Custom scripts on the Integrations page run on every public page. Only paste code
-  from providers you trust.
-
-To change the password, generate a new hash, update `ADMIN_PASSWORD_HASH` in Netlify
-and redeploy.
-
----
-
-## Local development
+In VS Code: **Terminal → New Terminal**, then:
 
 ```bash
-cd admin
+cd ~/Desktop/Sinvesta/sinvestawebsolar/admin
 npm install
-cp .env.example .env.local        # fill in; escape each $ in the hash as \$
-npm run dev                       # http://localhost:3001/admin
+npm run bluehost -- --email phong@sinvesta.com.au
 ```
 
-Locally, data is stored in `admin/.data/` (git-ignored). Set
-`NEXT_PUBLIC_SITE_ORIGIN=http://127.0.0.1:8899` and run the static site
-(`START-WEBSITE.bat` or `python -m http.server 8899`) to see image previews.
+- Use the email you want to sign in with.
+- When asked, type the **admin password** you want (at least 12 characters). Nothing
+  shows while you type; that's normal.
 
-To try the edge-function transform against the real pages, run the admin locally,
-save some edits, then import `netlify/edge-functions/lib/transform.ts` from Node 24
-(it runs TypeScript directly) and feed it `/admin/api/public/site-config`.
+You get **`dist/sinvesta-bluehost.zip`** (in the `sinvestawebsolar` folder).
+Your login is remembered for later builds (in `bluehost/config.local.php`, never
+uploaded to GitHub). Next time, just `npm run bluehost`.
+
+## 2. Upload to Bluehost (~5 minutes)
+
+1. Log in to Bluehost → **Websites → Settings → cPanel** (or *Advanced → cPanel*).
+2. **MultiPHP Manager** → select sinvesta.com.au → choose **PHP 8.1 or newer** → Apply.
+3. **File Manager** → open **public_html**.
+   - Top-right **Settings** → tick **Show Hidden Files (dotfiles)** → Save.
+   - If there's an old website in here, select everything and **Compress** it to a
+     backup zip first, then delete the old files (keep the backup and `cgi-bin`).
+4. **Upload** → choose `sinvesta-bluehost.zip` → wait for 100% → back to public_html.
+5. Right-click the zip → **Extract** → into `/public_html` → Extract files. Then delete the zip.
+6. Check that `public_html` now has `index.html`, `admin/`, `assets/`, `_sinvesta/`,
+   `uploads/` and a `.htaccess` file.
+
+## 3. Free HTTPS (SSL)
+
+Bluehost → **Websites → Security → SSL** → make sure the free SSL is **Active** for
+sinvesta.com.au. The site forces `https://www.` automatically once it is.
+
+## 4. Enquiry emails
+
+Enquiries are sent from **noreply@sinvesta.com.au** to the address in Global Settings
+(default **PVEnergy.au@gmail.com**).
+
+1. cPanel → **Email Accounts** → create `noreply@sinvesta.com.au` (any password; it
+   only needs to exist so Gmail trusts the sender).
+2. Send a test from the website's contact page. If it lands in Gmail's spam folder,
+   mark it **Not spam** once.
+
+Every enquiry is also saved in **/admin → Quote Enquiries**, even if an email fails.
+
+## 5. First sign-in
+
+Open **https://www.sinvesta.com.au/admin**, sign in, then:
+
+1. **Integrations & Scripts:** check the GA4 ID and Google verification tags are yours → Save.
+2. **Sitemap & Robots → Submit in Search Console**, and submit `sitemap.xml`.
+3. Send yourself a test enquiry from the Contact page.
 
 ---
 
-## Making more of the site editable
+## Updating the website later
 
-1. Add `data-cms="page.section.field"` to the element in the HTML (use
-   `data-cms-src` for an `<img>`).
-2. Add the field to `CONTENT_GROUPS` in `src/lib/content-schema.ts`.
-3. Run `npm run sync-content` to capture the current text as the default.
+Change files on your Mac, then `npm run bluehost` again and repeat step 2
+(upload + extract, overwrite files when asked). **Your saved settings, enquiries and
+uploaded images are not in the zip and are never overwritten.** They live in
+`~/sinvesta-data` and `public_html/uploads` on the server.
 
-If you edit hooked text directly in the HTML, run `npm run sync-content` again so
-the admin shows the new wording.
+## Changing the admin password
+
+`npm run bluehost -- --email phong@sinvesta.com.au` (enter the new password), then
+upload just the new `_sinvesta/config.php`, or the whole zip again.
+
+## Backups
+
+cPanel → File Manager → compress **`sinvesta-data`** (next to public_html) and
+**`public_html/uploads`**. That's everything the admin has saved.
 
 ---
 
-## Where things live
+## How it works (for developers)
 
-| Path | What |
-|---|---|
-| `src/app/login/` | Login screen |
-| `src/app/(dashboard)/` | Dashboard, Enquiries, Content, Media, Settings, SEO, Sitemap, Integrations |
-| `src/app/api/` | Admin API (`cms/[section]`, `media`, `inquiries`, `auth`) and `public/*` |
-| `src/lib/schemas.ts` | Every setting's shape, validation and default |
-| `src/lib/content-schema.ts` | Which parts of which pages are editable |
-| `src/lib/public-config.ts` | What the edge function receives |
-| `src/lib/seo.ts` | JSON-LD, sitemap, robots, SEO checks |
-| `../netlify/edge-functions/` | Applies it all to the live pages |
+```
+public_html/
+├── index.html, packages.html, …   the static site (source of truth for layout)
+├── assets/                        CSS, JS, images, fonts
+├── admin/                         the admin UI: Next.js 16 static export (React, Tailwind)
+├── _sinvesta/                     PHP 8.1+ back end (not directly reachable)
+│   ├── api.php                    JSON API for the admin  ← /admin/api/*
+│   ├── render.php                 serves pages with admin edits applied ← /, *.html
+│   ├── seo.php                    sitemap.xml, robots.txt
+│   ├── lib/                       storage, auth, validation, page transform
+│   ├── defaults.json              generated from the admin's TypeScript
+│   └── config.php                 admin email + bcrypt hash
+├── uploads/                       media library images (scripts can't run here)
+└── .htaccess                      HTTPS/www, rewrites, security headers, caching
+~/sinvesta-data/                   settings, enquiries, sessions, cache (outside public_html)
+```
+
+- **Page edits:** editable elements carry `data-cms="…"` in the HTML. `render.php`
+  swaps only the values changed in the admin, and caches the result until a setting
+  or the file changes. If anything goes wrong it serves the original file, so the
+  site never goes down.
+- **Security:** bcrypt password; PHP session in an `HttpOnly; Secure; SameSite=Strict`
+  cookie on `/admin` with an 8-hour limit. Login is limited to 5 attempts per 15 min.
+  Every save is re-validated in PHP. Uploads are checked by their bytes (no SVG, no
+  scripts). `/admin` is `noindex` and blocked in robots.txt.
+- **Local preview** of a build:
+  `php -S 127.0.0.1:8080 -t dist/bluehost/public_html bluehost/dev-router.php`
+- **More editable content:** add `data-cms` to the HTML, add the field in
+  `src/lib/content-schema.ts`, then run `npm run sync-content`.

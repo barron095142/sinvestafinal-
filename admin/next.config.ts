@@ -1,30 +1,17 @@
 import type { NextConfig } from "next";
 import { BASE_PATH } from "./src/lib/constants";
 
-const securityHeaders = [
-  { key: "X-Frame-Options", value: "DENY" },
-  { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "Referrer-Policy", value: "same-origin" },
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-  { key: "Content-Security-Policy", value: "frame-ancestors 'none'; base-uri 'self'; form-action 'self'" },
-];
-
+/**
+ * Built as plain static files (out/) and uploaded to Bluehost under
+ * public_html/admin. All data comes from the PHP API at /admin/api/*;
+ * security headers and noindex are set in the Apache .htaccess.
+ */
 const nextConfig: NextConfig = {
-  // The public site proxies /admin/* to this app, so every route, asset and
-  // API lives under /admin on the real domain.
+  output: "export",
   basePath: BASE_PATH,
+  trailingSlash: true, // admin/settings/index.html, served by Apache as /admin/settings/
+  images: { unoptimized: true },
   poweredByHeader: false,
-  async headers() {
-    return [
-      { source: "/:path*", headers: securityHeaders },
-      // Keep the portal out of search results. Media is excluded because the
-      // public site embeds uploaded images.
-      {
-        source: "/((?!api/media/).*)",
-        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" }],
-      },
-    ];
-  },
 };
 
 export default nextConfig;

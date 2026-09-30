@@ -1,0 +1,69 @@
+# ============================================================================
+# Sinvesta Group: public_html/.htaccess (Bluehost / Apache 2.4)
+#
+# If cPanel's "MultiPHP Manager" added a block marked
+#   # php -- BEGIN cPanel-generated handler, do not edit
+# keep that block: it selects the PHP version. Re-select PHP 8.1+ in
+# MultiPHP Manager after uploading and cPanel re-adds it for you.
+# ============================================================================
+
+Options -Indexes
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # --- HTTPS and www (canonical URLs are https://www.sinvesta.com.au) ---
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteCond %{HTTP_HOST} sinvesta\.com\.au$ [NC]
+  RewriteRule ^ https://www.sinvesta.com.au%{REQUEST_URI} [L,R=301,NE]
+  RewriteCond %{HTTP_HOST} ^sinvesta\.com\.au$ [NC]
+  RewriteRule ^ https://www.sinvesta.com.au%{REQUEST_URI} [L,R=301,NE]
+
+  # --- CMS internals are never reachable directly (only via the rules below) ---
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
+  RewriteRule ^_sinvesta(/|$) - [F,L]
+
+  # --- Admin API (PHP) ---
+  RewriteRule ^admin/api(/.*)?$ _sinvesta/api.php [L,QSA]
+
+  # --- sitemap.xml and robots.txt, generated from the admin ---
+  RewriteRule ^(sitemap\.xml|robots\.txt)$ _sinvesta/seo.php [L]
+
+  # --- Public pages with the admin's edits applied ---
+  RewriteRule ^$ _sinvesta/render.php [L]
+  RewriteRule ^(index|packages|rebates|projects|about|contact)\.html$ _sinvesta/render.php [L]
+</IfModule>
+
+# --- Security headers ---
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  <If "%{REQUEST_URI} =~ m#^/admin#">
+    Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+    Header always set X-Frame-Options "DENY"
+    Header always set Content-Security-Policy "frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+  </If>
+  # Caching: fingerprinted admin assets forever, images/fonts a month, CSS/JS an hour
+  <If "%{REQUEST_URI} =~ m#^/admin/_next/static/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+  <FilesMatch "\.(jpe?g|png|webp|avif|gif|ico|woff2?)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# Never serve dotfiles, backups or config
+<FilesMatch "(^\.|\.(bak|sql|log|ini|sh|md)$|^config\.php$)">
+  Require all denied
+</FilesMatch>

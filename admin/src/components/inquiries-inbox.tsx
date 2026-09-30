@@ -1,9 +1,9 @@
 "use client";
 
 import { Download, Inbox, Mail, MailCheck, MailX, MessageSquare, Phone, Search, TriangleAlert, X } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
-import { api } from "@/lib/constants";
+import { apiFetch } from "@/lib/client";
+import { useSession } from "./session";
 import { dateTime, timeAgo } from "@/lib/format";
 import { INQUIRY_STATUSES, type Inquiry } from "@/lib/schemas";
 import { InquiryStatusBadge, STATUS_LABEL } from "./inquiry-status";
@@ -22,7 +22,7 @@ export function InquiriesInbox({
   const [q, setQ] = useState("");
   const [openId, setOpenId] = useState<string | null>(initial.some((i) => i.id === initialId) ? initialId! : null);
   const toast = useToast();
-  const router = useRouter();
+  const { refresh } = useSession();
 
   const counts = useMemo(() => {
     const c: Record<string, number> = { all: items.length };
@@ -39,13 +39,16 @@ export function InquiriesInbox({
   const open = items.find((i) => i.id === openId) ?? null;
 
   async function update(id: string, patch: Partial<Pick<Inquiry, "status" | "notes">>) {
-    const res = await fetch(api(`/inquiries/${id}`), { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(patch) });
-    if (!res.ok) return toast("error", "Couldn't update enquiry");
-    const { item } = await res.json();
+    let item: Inquiry;
+    try {
+      ({ item } = await apiFetch<{ item: Inquiry }>(`/inquiries/${id}`, { method: "PATCH", body: JSON.stringify(patch) }));
+    } catch {
+      return toast("error", "Couldn't update enquiry");
+    }
     setItems((prev) => prev.map((x) => (x.id === id ? item : x)));
     if (patch.status) {
       toast("success", `Marked as ${STATUS_LABEL[patch.status]}`);
-      router.refresh(); // sidebar badge
+      refresh(); // sidebar badge
     } else toast("success", "Notes saved");
   }
 
@@ -73,7 +76,7 @@ export function InquiriesInbox({
         <div className="mb-6 flex gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
           <TriangleAlert className="mt-0.5 size-5 shrink-0 text-amber-600" />
           <p>
-            <b>Email alerts are off.</b> Enquiries are saved here, but nothing is emailed until <code className="font-mono text-[12.5px]">RESEND_API_KEY</code> is set in the admin site&rsquo;s environment variables. See the README.
+            <b>Email alerts are off.</b> Enquiries are saved here, but this server can&rsquo;t send mail. Ask Bluehost support to enable PHP mail for sinvesta.com.au.
           </p>
         </div>
       )}

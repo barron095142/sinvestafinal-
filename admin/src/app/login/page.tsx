@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
-import { getSession } from "@/lib/auth";
+import { Suspense } from "react";
 import { LoginForm } from "./login-form";
 
 export const metadata: Metadata = { title: "Sign in" };
 
-export default async function LoginPage({ searchParams }: { searchParams: Promise<{ next?: string }> }) {
-  if (await getSession()) redirect("/");
-  const { next } = await searchParams;
-  // Only same-app paths; never an open redirect.
-  const safeNext = next && /^\/(?!\/)[\w\-/]*$/.test(next) ? next : "/";
+export default function LoginPage() {
 
   return (
     <main className="relative isolate grid min-h-dvh place-items-center overflow-hidden bg-navy-950 px-4 py-10">
@@ -37,7 +32,9 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         </div>
 
         <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-[0_30px_80px_-20px_rgba(0,20,80,0.8)] backdrop-blur-xl sm:p-8">
-          <LoginForm next={safeNext} />
+          <Suspense>
+            <LoginForm />
+          </Suspense>
         </div>
 
         <p className="mt-6 text-center text-xs leading-5 text-slate-500">

@@ -1,7 +1,6 @@
 node_modules/
 .next/
-.netlify/
-.data/
+out/
 .env
 .env.local
 *.tsbuildinfo

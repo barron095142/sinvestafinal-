@@ -20,7 +20,10 @@ export function sanitizeRich(input: string) {
   return s;
 }
 
-/** Only site-relative asset paths and our own media URLs may become an <img src>. */
+/** Only site-relative asset paths and our own uploads may become an <img src>. */
 export function isSafeImageSrc(src: string) {
-  return /^assets\/img\/[\w./-]+\.(png|jpe?g|webp|avif|gif)$/i.test(src) || /^\/admin\/api\/media\/[a-z0-9-]+$/i.test(src);
+  return (
+    /^assets\/img\/[\w./-]+\.(png|jpe?g|webp|avif|gif)$/i.test(src) ||
+    /^\/uploads\/[0-9a-f-]{36}\.(png|jpg|webp|avif|gif)$/.test(src)
+  );
 }
