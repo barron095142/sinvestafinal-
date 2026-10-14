@@ -1,0 +1,39 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><style>
+body{background:linear-gradient(120deg,#FFFFFF 0%,#F6F8FB 45%,#E4ECF7 100%);position:relative;color:var(--navy)}
+.grid{position:absolute;inset:0;opacity:.55;
+ background-image:linear-gradient(#DCE3ED 1px,transparent 1px),linear-gradient(90deg,#DCE3ED 1px,transparent 1px);
+ background-size:48px 48px;mask-image:radial-gradient(ellipse at 38% 50%,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 38% 50%,#000 10%,transparent 70%)}
+.sun{position:absolute;left:330px;top:-240px;width:640px;height:640px;border-radius:50%;
+ background:radial-gradient(circle,rgba(232,163,23,.28),rgba(232,163,23,0) 62%)}
+.band{position:absolute;right:0;top:0;width:330px;height:624px;background:var(--blue)}
+.band:before{content:"";position:absolute;inset:0;opacity:.12;background:repeating-linear-gradient(115deg,#fff 0 2px,transparent 2px 46px)}
+.prod1{position:absolute;left:290px;top:120px;height:410px;filter:drop-shadow(0 28px 34px rgba(10,22,38,.22))}
+.prod2{position:absolute;left:490px;top:290px;height:240px;filter:drop-shadow(0 22px 26px rgba(10,22,38,.22))}
+.flow{position:absolute;left:0;top:0}
+.txt{position:absolute;left:890px;top:50px;width:410px}
+.txt img{height:46px;display:block;margin-bottom:22px}
+.eyebrow{font-family:"DM Sans";font-weight:600;letter-spacing:.18em;font-size:14px;color:var(--blue);margin-bottom:12px}
+h1{font-family:"DM Sans";font-weight:700;font-size:44px;line-height:1.04;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--blue)}
+p{margin-top:14px;font-size:16px;color:#4E5F78;line-height:1.4}
+.stats{display:flex;gap:26px;margin-top:18px;font-size:14px;color:#4E5F78}
+.stats b{display:block;font-weight:700;font-size:26px;color:var(--navy)}
+.cta{position:absolute;left:890px;top:418px;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.pill{background:var(--navy);color:#fff;font-family:"DM Sans";font-weight:700;font-size:23px;padding:12px 24px;border-radius:999px}
+.pill span{color:var(--amber);font-weight:600;font-size:15px;margin-right:10px}
+.web{font-family:"DM Sans";font-weight:600;font-size:19px;color:var(--blue)}
+</style></head><body>
+<div class="grid"></div><div class="sun"></div><div class="band"></div>
+<svg class="flow" width="1640" height="624"><g fill="none" stroke="#0B5FA5" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 10" opacity=".55">
+ <path d="M640 130 C 720 96, 800 150, 870 130"/></g>
+ <circle cx="640" cy="130" r="5" fill="#E8A317"/></svg>
+<img class="prod1" src="../../SINVESTA MODERN FINAL WEB/assets/img/kit-sigenergy-lg.webp"><img class="prod2" src="../../SINVESTA MODERN FINAL WEB/assets/img/kit-tesla-powerwall-lg.webp">
+<div class="txt">
+ <img src="../../SINVESTA MODERN FINAL WEB/assets/img/logo.png">
+ <div class="eyebrow">ENGINEERED FOR YOUR HOME</div>
+ <h1>Solar. Battery.<br>EV charging.<br><em>Done properly.</em></h1>
+ <p>Designed, installed &amp; monitored by one Sydney team.</p>
+ <div class="stats"><div><b class="num">2,500+</b>projects</div><div><b class="num">4,000+</b>clients</div><div><b class="num">30-yr</b>warranty</div></div>
+</div>
+<div class="cta"><div class="pill"><span>FREE QUOTE</span>0415 301 979</div><div class="web">sinvesta.com.au</div></div>
+</body></html>

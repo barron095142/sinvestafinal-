@@ -1,0 +1,10 @@
+@font-face{font-family:"DM Sans";src:url("../../SINVESTA MODERN FINAL WEB/assets/fonts/DMSans-Variable.woff2") format("woff2");font-weight:100 1000}
+@font-face{font-family:"Switzer";src:url("../../SINVESTA MODERN FINAL WEB/assets/fonts/Switzer-Regular.woff2");font-weight:400}
+@font-face{font-family:"Switzer";src:url("../../SINVESTA MODERN FINAL WEB/assets/fonts/Switzer-Medium.woff2");font-weight:500}
+@font-face{font-family:"Switzer";src:url("../../SINVESTA MODERN FINAL WEB/assets/fonts/Switzer-Semibold.woff2");font-weight:600}
+@font-face{font-family:"Switzer";src:url("../../SINVESTA MODERN FINAL WEB/assets/fonts/Switzer-Bold.woff2");font-weight:700}
+:root{--blue:#0B5FA5;--navy:#0A1626;--amber:#E8A317;--bg:#F6F8FB;--soft:#ECF1F8;--lime:#C9CC2E}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1640px;height:624px;overflow:hidden}
+body{font-family:"Switzer",sans-serif;-webkit-font-smoothing:antialiased}
+.num{font-family:"DM Sans";font-variant-numeric:tabular-nums}
